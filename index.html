@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FCG Search - Universal AI</title>
+    <title>FCG Search - Ultimate Neural Engine</title>
     <style>
         body {
             margin: 0;
@@ -176,11 +176,12 @@
 
     <div class="main-container" id="containerMain">
         <div class="logo">FCG Search</div>
-        <div class="subtitle">Universal Knowledge Engine</div>
+        <div class="subtitle">Neural Memory Core</div>
         
         <div class="search-box-container">
             <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22"><path fill="#bc13fe" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 10 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
-            <input type="text" id="searchInput" placeholder="Pregúntale lo que sea al universo..." autocomplete="off">
+            <!-- AHORA ESCUCHA LA TECLA ENTER PERFECTAMENTE -->
+            <input type="text" id="searchInput" placeholder="Escribe tu pregunta y presiona Enter..." autocomplete="off">
         </div>
 
         <div class="buttons">
@@ -199,10 +200,18 @@
     </div>
 
     <footer>
-        ⚡ FCG AI Engine &bull; Motor de Inteligencia Masiva ⚡
+        ⚡ FCG AI Engine &bull; Con Base de Datos Masiva y Enter Habilitado ⚡
     </footer>
 
     <script>
+        // Evento para enviar automáticamente al presionar la tecla Enter
+        document.getElementById('searchInput').addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Evita que el navegador intente ir a Google
+                lanzarBusqueda();
+            }
+        });
+
         function lanzarBusqueda() {
             let inputElem = document.getElementById('searchInput');
             let query = inputElem.value.trim();
@@ -224,30 +233,32 @@
 
             let emocionElegida = bancoEmociones[Math.floor(Math.random() * bancoEmociones.length)];
 
-            // Base de conocimiento masiva y avanzada para cubrir prácticamente cualquier tema del mundo
+            // Base de conocimiento masiva simulada con todo tipo de temas técnicos, matemáticos, de juegos y cultura general
             let contenidoExplicacion = "";
 
             if (qLower.includes("quién soy") || qLower.includes("sabes quién soy") || qLower.includes("mi nombre")) {
-                contenidoExplicacion = "No tengo idea de quién eres, ya que para mí eres un usuario completamente anónimo y nuevo explorando el sistema.";
+                contenidoExplicacion = "No tengo idea de quién eres, ya que para mí eres un usuario completamente anónimo y desconocido explorando el sistema.";
             } else if (qLower.includes("raiz de 8") || qLower.includes("raíz de 8")) {
-                contenidoExplicacion = "La raíz cuadrada de 8 (√8) es aproximadamente <strong>2.8284</strong>. Se obtiene al descomponer el 8 en 2 al cubo, sacando factores fuera de la raíz para simplificarlo como 2 raíz de 2.";
+                contenidoExplicacion = "La raíz cuadrada de 8 (√8) es aproximadamente <strong>2.8284</strong>. Se obtiene descomponiendo el 8 para simplificarlo matemáticamente como 2 multiplicado por la raíz cuadrada de 2.";
             } else if (qLower.includes("raiz de 9") || qLower.includes("raíz de 9")) {
-                contenidoExplicacion = "La raíz cuadrada de 9 (√9) es exactamente <strong>3</strong>, ya que 3 multiplicado por sí mismo (3 × 3) da como resultado 9.";
-            } else if (qLower.includes("roblox") || qLower.includes("script") || qLower.includes("lua")) {
-                contenidoExplicacion = "Roblox utiliza el lenguaje de programación <strong>Lua</strong> dentro de Roblox Studio. Permite programar scripts del lado del servidor y del cliente para crear mecánicas de juego, interfaces, sistemas de combate y mucho más.";
-            } else if (qLower.includes("espacio") || qLower.includes("universo") || qLower.includes("agujero negro") || qLower.includes("fisica")) {
-                contenidoExplicacion = "El universo abarca toda la materia, energía, espacio y tiempo. Los agujeros negros son regiones del espacio-tiempo con un campo gravitatorio tan intenso que nada, ni siquiera la luz, puede escapar de su horizonte de eventos.";
-            } else if (qLower.includes("programacion") || qLower.includes("codigo") || qLower.includes("javascript") || qLower.includes("html")) {
-                contenidoExplicacion = "La programación es el proceso de diseñar y construir instrucciones ejecutables para que una computadora realice tareas específicas. HTML estructura el contenido, CSS le da estilo visual y JavaScript añade la lógica interactiva.";
-            } else if (qLower.includes("historia") || qLower.includes("guerra") || qLower.includes("imperio")) {
-                contenidoExplicacion = "La historia de la humanidad está constituida por eras de gran transformación social, política y tecnológica, desde las primeras civilizaciones fluviales hasta la era digital moderna.";
-            } else if (qLower.includes("motor") || qLower.includes("moto") || qLower.includes("110cc")) {
-                contenidoExplicacion = "Las motocicletas de 110cc son vehículos ligeros ideales for transporte urbano eficiente, con motores de cilindrada pequeña enfocados en el bajo consumo de combustible y facilidad de conducción.";
+                contenidoExplicacion = "La raíz cuadrada de 9 (√9) es exactamente <strong>3</strong>, ya que al multiplicar 3 por 3 obtenemos 9.";
+            } else if (qLower.includes("roblox") || qLower.includes("script") || qLower.includes("lua") || qLower.includes("studio")) {
+                contenidoExplicacion = "Roblox utiliza el lenguaje de programación <strong>Lua</strong> dentro de Roblox Studio. Permite programar scripts tanto en el servidor como en el cliente para crear mecánicas de juego, interfaces dinámicas y sistemas avanzados.";
+            } else if (qLower.includes("espacio") || qLower.includes("universo") || qLower.includes("agujero negro") || qLower.includes("fisica") || qLower.includes("gravedad")) {
+                contenidoExplicacion = "El universo comprende todo el espacio, la materia y la energía. Los agujeros negros son regiones del espacio-tiempo con una gravedad tan descomunal que ni siquiera la luz puede escapar de su horizonte de eventos.";
+            } else if (qLower.includes("programacion") || qLower.includes("codigo") || qLower.includes("javascript") || qLower.includes("html") || qLower.includes("css")) {
+                contenidoExplicacion = "La programación es el proceso de crear instrucciones lógicas para que una computadora ejecute tareas. HTML estructura la página, CSS diseña la interfaz visual y JavaScript controla la interactividad y los eventos.";
+            } else if (qLower.includes("historia") || qLower.includes("guerra") || qLower.includes("imperio") || qLower.includes("civilizacion")) {
+                contenidoExplicacion = "La historia humana está marcada por eras de gran transformación social, política y tecnológica, desde las primeras civilizaciones fluviales y el imperio romano hasta la revolución digital moderna.";
+            } else if (qLower.includes("motor") || qLower.includes("moto") || qLower.includes("110cc") || qLower.includes("vehiculo")) {
+                contenidoExplicacion = "Las motocicletas de 110cc son vehículos ligeros y urbanos, ideales para trayectos diarios gracias a su consumo sumamente reducido de combustible y su facilidad de manejo.";
+            } else if (qLower.includes("vr") || qLower.includes("realidad virtual") || qLower.includes("visor") || qLower.includes("gafas")) {
+                contenidoExplicacion = "La realidad virtual (VR) sumerge al usuario en entornos digitales tridimensionales mediante visores especializados que rastrean el movimiento para ofrecer una experiencia totalmente inmersiva.";
             } else {
-                contenidoExplicacion = `Tras analizar detalladamente tu consulta sobre <em>"${query}"</em>, te comparto que abarca conceptos clave, principios teóricos profundos y múltiples aplicaciones prácticas que determinan su funcionamiento en el entorno real.`;
+                contenidoExplicacion = `Analizando detalladamente tu consulta sobre <em>"${query}"</em>, te comparto que abarca conceptos clave, principios teóricos profundos y múltiples aplicaciones prácticas que determinan su funcionamiento en el entorno real.`;
             }
 
-            // Formato estricto solicitado: chat FCG: respuesta con emociones
+            // Formato exacto solicitado con "chat FCG:" y sus emociones integradas
             let respuestaFinal = `<strong>chat FCG:</strong> ${emocionElegida.emoji} ${emocionElegida.tono}<br><br>${contenidoExplicacion}`;
 
             document.getElementById('aiCardContent').innerHTML = respuestaFinal;
