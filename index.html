@@ -1,47 +1,87 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>FGC AI</title>
+<title>FGC AI 4.0</title>
 
 <link rel="stylesheet" href="style.css">
 
 </head>
 
+
 <body>
 
+
 <header>
-    <h1>🤖 FGC AI</h1>
-    <p>Asistente inteligente</p>
+
+<h1>🤖 FGC AI 4.0</h1>
+
+<p>Asistente inteligente + Traductor + Cámara</p>
+
 </header>
 
 
-<div id="chatContainer">
 
-    <div class="message bot">
-        <b>FGC AI:</b><br>
-        Hola. ¿Qué necesitas?
-    </div>
+<div class="app">
+
+
+<div id="chat">
+
+
+<div class="message bot">
+
+<b>FGC AI:</b><br>
+
+Hola. Soy FGC AI 4.0. ¿Qué necesitas?
 
 </div>
 
 
+</div>
+
+
+
+<div class="camera-area">
+
+<video id="camera" autoplay></video>
+
+<button onclick="openCamera()">
+📷 Activar cámara
+</button>
+
+<button onclick="zoomCamera()">
+🔍 Zoom
+</button>
+
+</div>
+
+
+
 <div class="input-area">
 
-    <textarea 
-    id="userInput" 
-    placeholder="Escribe un mensaje..."></textarea>
 
-    <button onclick="sendMessage()">
-        Enviar
-    </button>
+<textarea id="input" placeholder="Escribe aquí..."></textarea>
+
+
+<button onclick="sendMessage()">
+➤
+</button>
+
+
+</div>
+
+
 
 </div>
 
 
 <script src="script.js"></script>
 
+
 </body>
+
 </html>
