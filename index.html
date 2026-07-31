@@ -1,258 +1,41 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FCG Systems Help - Asistente de Sistemas</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #131314, #1e1f22, #2b2c30);
-            color: #e3e3e8;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 30px;
-            font-size: 15px;
-        }
-        .header-title {
-            font-weight: bold;
-            color: #c4b5fd;
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        header a {
-            color: #a855f7;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        header a:hover {
-            color: #d8b4fe;
-        }
-        .main-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: -8vh;
-            padding: 0 20px;
-        }
-        .gemini-logo {
-            font-size: 65px;
-            font-weight: 800;
-            background: linear-gradient(90deg, #9333ea, #ec4899, #3b82f6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-family: 'Segoe UI', sans-serif;
-            margin-bottom: 5px;
-        }
-        .subtitle {
-            font-size: 18px;
-            color: #9ca3af;
-            margin-bottom: 35px;
-            font-weight: 500;
-            letter-spacing: 1px;
-        }
-        .search-box-container {
-            display: flex;
-            align-items: center;
-            width: 700px;
-            max-width: 100%;
-            height: 56px;
-            background-color: #1e1f22;
-            border: 1px solid #4b5563;
-            border-radius: 30px;
-            padding: 0 22px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-            transition: 0.3s;
-        }
-        .search-box-container:focus-within {
-            border-color: #a855f7;
-            box-shadow: 0 4px 25px rgba(168, 85, 247, 0.25);
-        }
-        .search-box-container input {
-            flex: 1;
-            border: none;
-            outline: none;
-            font-size: 16px;
-            background: transparent;
-            color: #ffffff;
-            margin-left: 12px;
-        }
-        .buttons {
-            margin-top: 25px;
-            display: flex;
-            gap: 15px;
-        }
-        .buttons button {
-            background: linear-gradient(135deg, #7c3aed, #db2777);
-            border: none;
-            border-radius: 25px;
-            color: #ffffff;
-            font-size: 14px;
-            font-weight: bold;
-            padding: 12px 24px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
-            transition: 0.2s;
-        }
-        .buttons button:hover {
-            transform: scale(1.03);
-            opacity: 0.95;
-        }
-        
-        .results-section {
-            display: none;
-            width: 750px;
-            max-width: 95%;
-            margin: 20px auto;
-            text-align: left;
-            animation: fadeIn 0.3s ease;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .ai-card {
-            background: #1e1f22;
-            border: 1px solid #374151;
-            border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 20px;
-            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.5);
-            font-size: 16px;
-            line-height: 1.7;
-            color: #f3f4f6;
-        }
-        .ai-card strong {
-            color: #c084fc;
-        }
-        .ai-card code {
-            background: #111214;
-            padding: 2px 6px;
-            border-radius: 4px;
-            color: #f472b6;
-            font-family: monospace;
-        }
-        
-        footer {
-            background-color: #111214;
-            color: #9ca3af;
-            font-size: 13px;
-            padding: 15px 30px;
-            border-top: 1px solid #27272a;
-            text-align: center;
-            letter-spacing: 0.5px;
-            margin-top: 40px;
-        }
-    </style>
-</head>
-<body>
+Crea una aplicación web llamada FGC AI, inspirada en la experiencia de un chat moderno, con HTML, CSS y JavaScript puros. El código debe estar completamente comentado, organizado y ser fácil de modificar.
 
-    <header>
-        <div class="header-title">✨ FCG Systems Core</div>
-        <a href="https://github.com/federicogongora67-debug" target="_blank">GitHub Pro</a>
-    </header>
+Características:
 
-    <div class="main-container" id="containerMain">
-        <div class="gemini-logo">FCG</div>
-        <div class="subtitle">Asistente experto en sistemas operativos y comandos</div>
-        
-        <div class="search-box-container">
-            <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22"><path fill="#a855f7" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 10 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
-            <input type="text" id="searchInput" placeholder="Ej: comandos de linux, ver ip en windows, reiniciar servicios..." autocomplete="off">
-        </div>
+- Diseño moderno, profesional y responsive.
+- Barra lateral con historial de conversaciones.
+- Chat con burbujas elegantes.
+- Modo oscuro por defecto.
+- Animaciones suaves.
+- Indicador "Pensando...".
+- Escribir la respuesta letra por letra.
+- Botón para copiar respuestas.
+- Botón para regenerar respuesta.
+- Botón para borrar el chat.
+- Campo para escribir mensajes.
+- Enter envía el mensaje.
+- Shift + Enter hace un salto de línea.
+- Permitir subir imágenes con vista previa.
+- Permitir arrastrar y soltar imágenes.
+- Guardar conversaciones en localStorage.
+- Recordar el contexto de la conversación.
+- Mostrar fecha y hora de cada mensaje.
+- Mostrar avatar del usuario y de FGC AI.
+- Mostrar mensajes en formato Markdown.
+- Resaltar código automáticamente.
+- Diseño similar a un asistente moderno, pero con identidad propia.
 
-        <div class="buttons">
-            <button type="button" onclick="lanzarBusqueda()">Consultar Sistema</button>
-            <button type="button" onclick="suerteGamer()">Ejemplo Linux</button>
-        </div>
-    </div>
+Personalidad de FGC AI:
 
-    <div class="results-section" id="resultsSection">
-        <div class="ai-card" id="aiCardContent"></div>
-        
-        <button type="button" onclick="volverInicio()" style="background: #374151; border: 1px solid #4b5563; color: #fff; padding: 10px 18px; border-radius: 8px; cursor: pointer; font-weight: bold; transition: 0.2s;">← Nueva consulta</button>
-    </div>
+FGC AI es un asistente inteligente, amable, paciente y profesional. Responde de forma clara y natural. Puede ayudar con matemáticas, español, inglés, física, química, biología, historia, geografía, informática, programación, literatura, filosofía, economía y cultura general. Explica paso a paso cuando sea necesario. Si no sabe una respuesta, lo dice claramente y no inventa información.
 
-    <footer>
-        ✨ FCG Systems Core &bull; Soporte y Comandos para Sistemas Operativos
-    </footer>
+Organiza el proyecto en archivos separados:
 
-    <script>
-        document.getElementById('searchInput').addEventListener('keydown', function(event) {
-            if (event.key === 'Enter') {
-                event.preventDefault();
-                lanzarBusqueda();
-            }
-        });
+index.html
+style.css
+script.js
+brain.js
+storage.js
+config.js
 
-        function lanzarBusqueda() {
-            let inputElem = document.getElementById('searchInput');
-            let query = inputElem.value.trim();
-            if(!query) return;
-
-            document.getElementById('containerMain').style.display = "none";
-            let resultsDiv = document.getElementById('resultsSection');
-            resultsDiv.style.display = "block";
-
-            let qLower = query.toLowerCase();
-            let respuestaCore = "";
-
-            // BASE DE DATOS DE SISTEMAS OPERATIVOS, COMANDOS Y AYUDA PARA PRINCIPIANTES
-            if (qLower.includes("linux") || qLower.includes("ubuntu") || qLower.includes("debian") || qLower.includes("terminal")) {
-                respuestaCore = `<strong>Guía rápida de Linux para principiantes:</strong><br>
-                La terminal es una interfaz de comandos para controlar el sistema operativo. Aquí tienes los comandos básicos indispensables:
-                <br>• <code>ls</code>: Muestra todos los archivos y carpetas de la ubicación actual.
-                <br>• <code>cd [carpeta]</code>: Permite entrar a una carpeta específica (ej: <code>cd Documentos</code>).
-                <br>• <code>pwd</code>: Te indica en qué ruta exacta del equipo estás parado.
-                <br>• <code>mkdir [nombre]</code>: Crea una nueva carpeta.
-                <br>• <code>sudo apt update</code>: Actualiza los repositorios de paquetes del sistema.`;
-            } else if (qLower.includes("windows") || qLower.includes("cmd") || qLower.includes("powershell") || qLower.includes("pc")) {
-                respuestaCore = `<strong>Guía rápida de Windows (Sistemas y Consola):</strong><br>
-                Para solucionar problemas comunes desde la consola de comandos (CMD o PowerShell):
-                <br>• <code>dir</code>: Lista los archivos y carpetas del directorio actual.
-                <br>• <code>ipconfig</code>: Muestra la dirección IP local y datos de la red conectados.
-                <br>• <code>sfc /scannow</code>: Busca y repara archivos del sistema operativos dañados de forma automática.
-                <br>• <code>taskmgr</code>: Abre el Administrador de Tareas para cerrar programas congelados.`;
-            } else if (qLower.includes("red") || qLower.includes("ip") || qLower.includes("internet") || qLower.includes("ping")) {
-                respuestaCore = `<strong>Diagnóstico de Red en Sistemas:</strong><br>
-                Para verificar la conexión a internet y el estado de la red:
-                <br>• <code>ping google.com</code>: Envía paquetes de prueba para verificar si hay conexión activa con internet.
-                <br>• <code>ipconfig</code> (en Windows) o <code>ifconfig</code> / <code>ip a</code> (en Linux): Permiten visualizar la configuración de red y las direcciones IP asignadas al equipo.`;
-            } else if (qLower.includes("proceso") || qLower.includes("memoria") || qLower.includes("cpu") || qLower.includes("ram")) {
-                respuestaCore = `<strong>Monitoreo de Recursos del Sistema:</strong><br>
-                Para saber qué consume memoria y procesador:
-                <br>• En Linux: Usa <code>htop</code> o <code>top</code> para ver los procesos en tiempo real y cerrarlos si es necesario.
-                <br>• En Windows: Usa <code>taskmgr</code> para abrir el Administrador de Tareas y revisar el rendimiento de la CPU y la memoria RAM.`;
-            } else {
-                respuestaCore = `<strong>Asistente de Sistemas:</strong><br>
-                Para tu consulta sobre <em>"${query}"</em>, te recomiendo verificar los comandos básicos del sistema operativo correspondiente (Linux o Windows). Escribe palabras clave como <strong>"linux"</strong>, <strong>"windows"</strong> o <strong>"red"</strong> para ver guías detalladas paso a paso diseñadas para principiantes.`;
-            }
-
-            document.getElementById('aiCardContent').innerHTML = respuestaCore;
-        }
-
-        function volverInicio() {
-            document.getElementById('resultsSection').style.display = "none";
-            document.getElementById('containerMain').style.display = "flex";
-            document.getElementById('searchInput').value = "";
-            document.getElementById('searchInput').focus();
-        }
-
-        function suerteGamer() {
-            document.getElementById('searchInput').value = "comandos basicos de linux";
-            lanzarBusqueda();
-        }
-    </script>
-
-</body>
-</html>
+Todo el código debe estar optimizado, comentado y listo para conectar posteriormente una API de inteligencia artificial como Gemini u OpenAI sin necesidad de rehacer la aplicación.
