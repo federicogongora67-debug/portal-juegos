@@ -2,13 +2,10 @@
 <html lang="es">
 
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="theme-color" content="#6d28d9">
-
-<title>FGC AI 5.0</title>
+<title>FGC AI 6.0</title>
 
 <link rel="stylesheet" href="style.css">
 
@@ -17,47 +14,63 @@
 
 <body>
 
-
 <header>
-
-<h1>🤖 FGC AI 5.0</h1>
-
-<p>Asistente inteligente | Programación | Juegos | Idiomas</p>
-
+    <h1>🤖 FGC AI 6.0</h1>
+    <p>Asistente inteligente multilenguaje</p>
 </header>
 
 
+<main>
 
 <div id="chat">
 
-
-<div class="message bot">
-
-<b>FGC AI:</b><br>
-
-Hola. Soy FGC AI 5.0. ¿Qué necesitas?
+    <div class="message bot">
+        <div class="avatar">🤖</div>
+        <div>
+            <b>FGC AI</b>
+            <p>
+            Hola. Soy FGC AI 6.0.
+            Estoy listo para ayudarte con idiomas, programación,
+            comandos, juegos, estudios o simplemente conversar.
+            </p>
+        </div>
+    </div>
 
 </div>
 
 
-</div>
+<div id="typing" class="typing hidden">
 
+FGC está escribiendo
+<span>.</span>
+<span>.</span>
+<span>.</span>
+
+</div>
 
 
 
 <div class="input-area">
 
+<textarea 
+id="input"
+placeholder="Escribe un mensaje... (Enter enviar / Shift + Enter nueva línea)"
+></textarea>
 
-<textarea id="input" placeholder="Escribe tu pregunta..."></textarea>
 
-
-<button onclick="sendMessage()">➤</button>
+<button id="send">
+➤
+</button>
 
 
 </div>
 
 
+</main>
 
+
+
+<script src="knowledge.js"></script>
 
 <script src="script.js"></script>
 
