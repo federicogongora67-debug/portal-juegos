@@ -3,170 +3,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google</title>
+    <title>FCG Search - Gamer Edition</title>
     <style>
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             height: 100vh;
-            background-color: #fff;
+            background: linear-gradient(135deg, #0d0221, #190933, #2b1055);
+            color: #e0d4fc;
         }
         header {
             display: flex;
             justify-content: flex-end;
-            padding: 15px 20px;
-            align-items: center;
-            gap: 15px;
-            font-size: 13px;
-            color: #000;
+            padding: 20px;
+            gap: 20px;
+            font-size: 14px;
         }
         header a {
-            color: rgba(0,0,0,0.87);
+            color: #bc13fe;
             text-decoration: none;
+            font-weight: bold;
+            text-shadow: 0 0 8px rgba(188, 19, 254, 0.5);
         }
         header a:hover {
-            text-decoration: underline;
-        }
-        .menu-icon {
-            width: 20px;
-            height: 20px;
-            background: #5f6368;
-            border-radius: 50%;
-            display: inline-block;
+            color: #f3e7ff;
+            text-shadow: 0 0 12px rgba(243, 231, 255, 0.8);
         }
         .main-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: -10vh;
+            margin-top: -8vh;
+            padding: 0 20px;
         }
         .logo {
             font-size: 85px;
-            font-weight: bold;
-            letter-spacing: -4px;
-            margin-bottom: 25px;
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin-bottom: 5px;
+            font-family: 'Courier New', monospace;
+            color: #ffffff;
+            text-shadow: 0 0 20px #bc13fe, 0 0 40px #7b2cbf;
         }
-        .g1 { color: #4285F4; }
-        .g2 { color: #EA4335; }
-        .g3 { color: #FBBC05; }
-        .g4 { color: #4285F4; }
-        .g5 { color: #34A853; }
-        .g6 { color: #EA4335; }
-        
-        .search-box {
+        .subtitle {
+            font-size: 20px;
+            color: #c77dff;
+            margin-bottom: 35px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(199, 125, 255, 0.6);
+        }
+        .search-form {
             display: flex;
             align-items: center;
-            width: 580px;
-            max-width: 90%;
-            height: 44px;
-            border: 1px solid #dfe1e5;
-            border-radius: 24px;
-            padding: 0 14px;
-            box-shadow: none;
-            transition: box-shadow 0.3s;
+            width: 650px;
+            max-width: 100%;
+            height: 55px;
+            background-color: rgba(22, 10, 45, 0.8);
+            border: 2px solid #7b2cbf;
+            border-radius: 30px;
+            padding: 0 20px;
+            box-shadow: 0 0 25px rgba(123, 44, 191, 0.4);
+            transition: 0.3s;
         }
-        .search-box:hover {
-            box-shadow: 0 1px 6px rgba(32,33,36,.28);
-            border-color: rgba(223,225,229,0);
+        .search-form:hover, .search-form:focus-within {
+            border-color: #bc13fe;
+            box-shadow: 0 0 35px rgba(188, 19, 254, 0.8);
         }
-        .search-box input {
+        .search-form input {
             flex: 1;
             border: none;
             outline: none;
-            font-size: 16px;
+            font-size: 17px;
             background: transparent;
+            color: #ffffff;
             margin-left: 10px;
         }
         .buttons {
-            margin-top: 30px;
+            margin-top: 35px;
+            display: flex;
+            gap: 15px;
         }
         .buttons button {
-            background-color: #f8f9fa;
-            border: 1px solid #f8f9fa;
-            border-radius: 4px;
-            color: #3c4043;
-            font-size: 14px;
-            padding: 10px 16px;
-            margin: 0 4px;
+            background: linear-gradient(45deg, #7b2cbf, #bc13fe);
+            border: none;
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 12px 22px;
             cursor: pointer;
+            box-shadow: 0 0 15px rgba(188, 19, 254, 0.4);
+            transition: 0.2s;
         }
         .buttons button:hover {
-            border: 1px solid #dadce0;
-            box-shadow: 0 1px 1px rgba(0,0,0,.1);
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(188, 19, 254, 0.8);
+        }
+        /* Caja inteligente para respuestas directas */
+        .ai-response {
+            margin-top: 25px;
+            width: 600px;
+            max-width: 90%;
+            background: rgba(15, 5, 30, 0.9);
+            border: 1px solid #bc13fe;
+            border-radius: 12px;
+            padding: 15px 20px;
+            display: none;
+            font-size: 15px;
+            color: #f3e7ff;
+            box-shadow: 0 0 20px rgba(188, 19, 254, 0.3);
+            text-align: left;
         }
         footer {
-            background-color: #f2f2f2;
-            color: #70757a;
-            font-size: 14px;
-            width: 100%;
-        }
-        .footer-row {
+            background-color: rgba(10, 3, 20, 0.9);
+            color: #9d4edd;
+            font-size: 13px;
             padding: 15px 30px;
-            border-bottom: 1px solid #dadce0;
-        }
-        .footer-links {
-            display: flex;
-            justify-content: space-between;
-            padding: 15px 30px;
-            flex-wrap: wrap;
-        }
-        .footer-links div {
-            display: flex;
-            gap: 25px;
-        }
-        .footer-links a {
-            color: #70757a;
-            text-decoration: none;
-        }
-        .footer-links a:hover {
-            text-decoration: underline;
+            border-top: 1px solid #3c096c;
+            text-align: center;
+            letter-spacing: 1px;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="#">Gmail</a>
-        <a href="#">Imágenes</a>
-        <div class="menu-icon"></div>
-        <a href="#" style="background: #1a73e8; color: white; padding: 7px 15px; border-radius: 4px; text-decoration: none; font-weight: bold;">Acceder</a>
+        <a href="https://github.com/federicogongora67-debug" target="_blank">GitHub Pro</a>
+        <a href="#" onclick="alert('FCG Search Gamer AI v2.0 - Todo lo puedes buscar y consultar.');">Info AI</a>
     </header>
 
     <div class="main-container">
-        <div class="logo">
-            <span class="g1">G</span><span class="g2">o</span><span class="g3">o</span><span class="g4">g</span><span class="g5">l</span><span class="g6">e</span>
-        </div>
+        <div class="logo">FCG Search</div>
+        <div class="subtitle">Search</div>
         
-        <div class="search-box">
-            <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path fill="#9aa0a6" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 10 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
-            <input type="text" autofocus>
-        </div>
+        <!-- Formulario inteligente -->
+        <form class="search-form" id="searchForm" onsubmit="realizarBusqueda(event)">
+            <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22"><path fill="#bc13fe" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 10 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
+            <input type="text" id="searchInput" placeholder="Busca en internet o pídele algo al buscador inteligente..." autofocus required autocomplete="off">
+        </form>
 
         <div class="buttons">
-            <button>Buscar con Google</button>
-            <button>Me siento con suerte</button>
+            <button type="button" onclick="ejecutarAccion()">Buscar / Preguntar</button>
+            <button type="button" onclick="suerteGamer()">¡Modo Suerte!</button>
+        </div>
+
+        <div class="ai-response" id="aiBox">
+            <strong style="color: #bc13fe;">🤖 FCG Intelligence:</strong> <span id="aiText"></span>
         </div>
     </div>
 
     <footer>
-        <div class="footer-row">Colombia</div>
-        <div class="footer-links">
-            <div>
-                <a href="#">Sobre Google</a>
-                <a href="#">Publicidad</a>
-                <a href="#">Negocios</a>
-                <a href="#">Cómo funciona la Búsqueda</a>
-            </div>
-            <div>
-                <a href="#">Privacidad</a>
-                <a href="#">Condiciones</a>
-                <a href="#">Preferencias</a>
-            </div>
-        </div>
+        ⚡ Creado por FGC &bull; Motor Web & IA Gamer Activo ⚡
     </footer>
+
+    <script>
+        function realizarBusqueda(event) {
+            event.preventDefault();
+            let query = document.getElementById('searchInput').value.trim();
+            
+            // Si le pides algo matemático o inteligente directo, responde aquí mismo
+            if (query.toLowerCase().startsWith("cuanto es") || query.toLowerCase().startsWith("calcula")) {
+                try {
+                    let operacion = query.toLowerCase().replace("cuanto es", "").replace("calcula", "");
+                    let resultado = eval(operacion);
+                    mostrarIA("El resultado de la operación es: " + resultado);
+                    return;
+                } catch(e) {}
+            }
+
+            if (query.toLowerCase() === "hola") {
+                mostrarIA("¡Hola, pro! ¿Qué partida vamos a romper hoy?");
+                return;
+            }
+
+            // Si es cualquier otra cosa, lo busca de TODO en Google
+            window.location.href = "https://www.google.com/search?q=" + encodeURIComponent(query);
+        }
+
+        function ejecutarAccion() {
+            let fakeEvent = { preventDefault: function() {} };
+            realizarBusqueda(fakeEvent);
+        }
+
+        function mostrarIA(texto) {
+            let box = document.getElementById('aiBox');
+            let txt = document.getElementById('aiText');
+            txt.innerText = texto;
+            box.style.display = "block";
+        }
+
+        function suerteGamer() {
+            let easterEggs = [
+                "¡Modo Dios activado! 🎮",
+                "¡Bienvenido al ranking global de FGC Search! 🚀",
+                "¡Has desbloqueado el buscador definitivo color morado gamer! ✨"
+            ];
+            let random = easterEggs[Math.floor(Math.random() * easterEggs.length)];
+            mostrarIA(random);
+        }
+    </script>
 
 </body>
 </html>
