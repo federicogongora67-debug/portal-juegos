@@ -35,7 +35,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: -8vh;
+            margin-top: -5vh;
             padding: 0 20px;
         }
         .logo {
@@ -66,11 +66,6 @@
             border-radius: 30px;
             padding: 0 20px;
             box-shadow: 0 0 25px rgba(123, 44, 191, 0.4);
-            transition: 0.3s;
-        }
-        .search-box-container:hover, .search-box-container:focus-within {
-            border-color: #bc13fe;
-            box-shadow: 0 0 35px rgba(188, 19, 254, 0.8);
         }
         .search-box-container input {
             flex: 1;
@@ -103,7 +98,6 @@
             box-shadow: 0 0 25px rgba(188, 19, 254, 0.8);
         }
         
-        /* Resultados internos (IA y Videos) */
         .results-section {
             display: none;
             width: 750px;
@@ -178,26 +172,25 @@
 
     <header>
         <a href="https://github.com/federicogongora67-debug" target="_blank">GitHub Pro</a>
-        <a href="#" onclick="alert('FCG Search: Motor interno protegido sin salidas externas.');">Info Motor</a>
     </header>
 
     <div class="main-container" id="containerMain">
         <div class="logo">FCG Search</div>
         <div class="subtitle">Search</div>
         
-        <!-- YA NO ES UN FORMULARIO, ES UN DIV SEGURO PARA QUE NO SALGA A GOOGLE -->
         <div class="search-box-container">
             <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22"><path fill="#bc13fe" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 10 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
-            <input type="text" id="searchInput" placeholder="Escribe tu pregunta aquí (ej. raiz de 8)..." autofocus autocomplete="off" onkeydown="verificarEnter(event)">
+            <!-- SE QUITÓ CUALQUIER EVENTO DE TECLADO RARO PARA QUE SOLO FUNCIONE CON EL BOTÓN -->
+            <input type="text" id="searchInput" placeholder="Escribe tu pregunta aquí..." autocomplete="off">
         </div>
 
         <div class="buttons">
-            <button type="button" onclick="ejecutarBusquedaLocal()">Buscar con IA</button>
+            <!-- Única forma de disparar la búsqueda de manera ultra segura -->
+            <button type="button" onclick="lanzarBusqueda()">Buscar con IA</button>
             <button type="button" onclick="suerteGamer()">¡Modo Suerte!</button>
         </div>
     </div>
 
-    <!-- Resultados internos con IA y videos -->
     <div class="results-section" id="resultsSection">
         <div class="ai-card" id="aiCardContent"></div>
 
@@ -212,50 +205,36 @@
     </footer>
 
     <script>
-        function verificarEnter(event) {
-            if (event.key === "Enter") {
-                ejecutarBusquedaLocal();
-            }
-        }
-
-        function ejecutarBusquedaLocal() {
-            let query = document.getElementById('searchInput').value.trim();
+        function lanzarBusqueda() {
+            let inputElem = document.getElementById('searchInput');
+            let query = inputElem.value.trim();
             if(!query) return;
 
-            // Ocultar pantalla principal y mostrar la sección de respuestas de la IA
             document.getElementById('containerMain').style.display = "none";
             let resultsDiv = document.getElementById('resultsSection');
             resultsDiv.style.display = "block";
 
-            // Procesador inteligente interno para cualquier pregunta
             let respuestaIA = `<strong>🤖 FCG AI Engine Respuesta:</strong><br><br>`;
             let qLower = query.toLowerCase();
 
             if (qLower.includes("raiz de 8") || qLower.includes("raíz de 8")) {
-                respuestaIA += "La raíz cuadrada de 8 (√8) es aproximadamente <strong>2.8284</strong>. Calculado de forma directa y exacta en tu propio navegador FCG Search.";
+                respuestaIA += "La raíz cuadrada de 8 (√8) es aproximadamente <strong>2.8284</strong>. Procesado localmente en FCG Search sin salir a Google.";
             } else if (qLower.includes("raiz de 9") || qLower.includes("raíz de 9")) {
-                respuestaIA += "La raíz cuadrada de 9 (√9) es exactamente <strong>3</strong>. ¡Resultado procesado localmente sin usar Google!";
-            } else if (qLower.includes("hola")) {
-                respuestaIA += "¡Hola, bro! Tu navegador propio está activo, con fondo morado y respondiendo sin salir a ninguna parte.";
+                respuestaIA += "La raíz cuadrada de 9 (√9) es exactamente <strong>3</strong>. ¡Resultado directo en tu navegador morado!";
             } else {
-                respuestaIA += `Resultado generado internamente para: <em>"${query}"</em>.<br><br>Este tema ha sido analizado por el motor inteligente de FCG Search para ofrecerte explicaciones, datos clave y entretenimiento sin depender de buscadores externos.`;
+                respuestaIA += `Resultado generado internamente para: <em>"${query}"</em>.<br><br>El motor inteligente ha recopilado y estructurado esta información de manera directa para mostrarla en tu propia interfaz gamer.`;
             }
 
             document.getElementById('aiCardContent').innerHTML = respuestaIA;
 
-            // Generar tarjetas de video simuladas internas
             let videosHtml = `
-                <div class="video-card" onclick="alert('Reproduciendo video interno de: ${query}')">
+                <div class="video-card" onclick="alert('Abriendo video interno para: ${query}')">
                     <div class="video-thumb">▶️🔥</div>
-                    <div class="video-title">Explicación en video de ${query}</div>
+                    <div class="video-title">Guía en video sobre ${query}</div>
                 </div>
-                <div class="video-card" onclick="alert('Reproduciendo video interno de: ${query}')">
+                <div class="video-card" onclick="alert('Abriendo video interno para: ${query}')">
                     <div class="video-thumb">🎮⚡</div>
-                    <div class="video-title">Tutorial completo sobre ${query}</div>
-                </div>
-                <div class="video-card" onclick="alert('Reproduciendo video interno de: ${query}')">
-                    <div class="video-thumb">🚀💎</div>
-                    <div class="video-title">Análisis detallado y ejemplos de ${query}</div>
+                    <div class="video-title">Tutorial avanzado de ${query}</div>
                 </div>
             `;
             document.getElementById('videosContainerContent').innerHTML = videosHtml;
@@ -269,8 +248,8 @@
         }
 
         function suerteGamer() {
-            document.getElementById('searchInput').value = "Modo Dios FCG Activo";
-            ejecutarBusquedaLocal();
+            document.getElementById('searchInput').value = "Modo Dios FCG";
+            lanzarBusqueda();
         }
     </script>
 
