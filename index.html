@@ -1,30 +1,44 @@
-Modifica mi página actual FGC AI, no crees una nueva.
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FGC AI</title>
 
-Quiero transformar el diseño en un chat estilo WhatsApp/ChatGPT.
+    <style>
+        /* Aquí va el diseño (CSS) */
+    </style>
 
-Necesito:
-- Ventana de conversación con burbujas de mensajes.
-- Usuario y FGC AI con diferentes estilos.
-- Caja de texto inferior.
-- Botón enviar.
-- Enter para enviar mensaje.
-- Shift + Enter para salto de línea.
-- Diseño moderno y adaptable a celular.
+</head>
 
-FGC AI debe tener personalidad seria y seca:
-- Respuestas cortas pero útiles.
-- No usar demasiados emojis.
-- Hablar como un asistente inteligente.
-- Ser directo y profesional.
+<body>
 
-También quiero ampliar su conocimiento para responder preguntas generales de:
-- Sistemas operativos.
-- Programación.
-- Matemáticas.
-- Castellano.
-- Historia.
-- Ciencias.
-- Inglés.
-- Tecnología.
+    <!-- Aquí va el chat -->
+    <div id="chat">
+    </div>
 
-No elimines mi proyecto actual. Conserva el nombre FGC y mejora el código existente.
+    <textarea id="mensaje"></textarea>
+    <button onclick="enviarMensaje()">Enviar</button>
+
+
+    <script>
+
+        // Aquí va la inteligencia de FGC
+        function enviarMensaje(){
+
+        }
+
+        // Aquí va Shift + Enter
+        document.getElementById("mensaje").addEventListener("keydown", function(e){
+
+            if(e.key === "Enter" && !e.shiftKey){
+
+                e.preventDefault();
+                enviarMensaje();
+
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>
