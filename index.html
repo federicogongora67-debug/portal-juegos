@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FCG Search - Ultimate Gamer Engine</title>
+    <title>FCG Search - AI Engine</title>
     <style>
         body {
             margin: 0;
@@ -35,7 +35,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: -5vh;
+            margin-top: -8vh;
             padding: 0 20px;
             transition: 0.4s ease;
         }
@@ -104,14 +104,14 @@
             box-shadow: 0 0 25px rgba(188, 19, 254, 0.8);
         }
         
-        /* Resultados internos (IA + Videos + Enlaces) */
+        /* Panel de resultados internos */
         .results-section {
             display: none;
             width: 750px;
             max-width: 95%;
-            margin: 30px auto;
+            margin: 20px auto;
             text-align: left;
-            animation: fadeIn 0.5s ease;
+            animation: fadeIn 0.4s ease;
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
@@ -125,7 +125,7 @@
             margin-bottom: 20px;
             box-shadow: 0 0 25px rgba(188, 19, 254, 0.3);
             font-size: 16px;
-            line-height: 1.5;
+            line-height: 1.6;
         }
         .videos-container {
             display: grid;
@@ -148,17 +148,17 @@
         }
         .video-thumb {
             width: 100%;
-            height: 110px;
+            height: 100px;
             background: #2b1055;
             border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
+            font-size: 26px;
             margin-bottom: 8px;
         }
         .video-title {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: bold;
             color: #f3e7ff;
         }
@@ -179,92 +179,79 @@
 
     <header>
         <a href="https://github.com/federicogongora67-debug" target="_blank">GitHub Pro</a>
-        <a href="#" onclick="alert('FCG Search Gamer Engine v3.0 - Motor interno independiente sin salir de tu web.');">Info Motor</a>
+        <a href="#" onclick="alert('FCG Search AI: Motor 100% independiente y propio.');">Info IA</a>
     </header>
 
     <div class="main-container" id="containerMain">
         <div class="logo">FCG Search</div>
         <div class="subtitle">Search</div>
         
-        <form class="search-form" id="searchForm" onsubmit="ejecutarMotor(event)">
+        <!-- IMPORTANTE: El 'return false' evita por completo que te mande a Google -->
+        <form class="search-form" id="searchForm" onsubmit="realizarBusquedaInterna(event)">
             <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22"><path fill="#bc13fe" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 10 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
-            <input type="text" id="searchInput" placeholder="Escribe lo que quieras buscar (ej. raiz de 8, roblox, etc.)..." autofocus required autocomplete="off">
+            <input type="text" id="searchInput" placeholder="Pregúntale lo que sea a FCG Search..." autofocus required autocomplete="off">
         </form>
 
         <div class="buttons">
-            <button type="button" onclick="buscarClick()">Buscar en FCG</button>
+            <button type="button" onclick="buscarClick()">Buscar con IA</button>
             <button type="button" onclick="suerteGamer()">¡Modo Suerte!</button>
         </div>
     </div>
 
-    <!-- Resultados que aparecen aquí mismo con IA y videos -->
+    <!-- Resultados internos con IA y videos -->
     <div class="results-section" id="resultsSection">
-        <div class="ai-card" id="aiCardContent">
-            <!-- Respuesta de la IA -->
-        </div>
+        <div class="ai-card" id="aiCardContent"></div>
 
         <h3 style="color: #c77dff; margin-bottom: 12px;">📺 Videos relacionados</h3>
-        <div class="videos-container" id="videosContainerContent">
-            <!-- Videos simulados -->
-        </div>
+        <div class="videos-container" id="videosContainerContent"></div>
         
-        <button type="button" onclick="volverInicio()" style="background: #3c096c; border: 1px solid #bc13fe; color: #fff; padding: 8px 16px; border-radius: 6px; cursor: pointer; margin-top: 10px;">← Nueva Búsqueda</button>
+        <button type="button" onclick="volverInicio()" style="background: #3c096c; border: 1px solid #bc13fe; color: #fff; padding: 10px 18px; border-radius: 6px; cursor: pointer; font-weight: bold;">← Nueva Búsqueda</button>
     </div>
 
     <footer>
-        ⚡ Creado por FGC &bull; Motor de Navegación Interno Gamer ⚡
+        ⚡ Creado por FGC &bull; Motor IA Propio e Independiente ⚡
     </footer>
 
     <script>
-        function ejecutarMotor(event) {
-            event.preventDefault();
+        function realizarBusquedaInterna(event) {
+            // ESTO BLOQUEA CUALQUIER INTENTO DE IR A GOOGLE
+            if(event) event.preventDefault();
+
             let query = document.getElementById('searchInput').value.trim();
             if(!query) return;
 
-            // Subir un poco el diseño principal para dar espacio a los resultados
-            document.getElementById('containerMain').style.marginTop = "0vh";
+            // Ocultar inicio y mostrar panel interno
             document.getElementById('containerMain').style.display = "none";
-            
             let resultsDiv = document.getElementById('resultsSection');
             resultsDiv.style.display = "block";
 
-            // Generar respuesta de IA interna
-            let aiText = `<strong>🤖 FGC Search AI Analizó:</strong> "${query}"<br><br>`;
-            let qLower = query.toLowerCase();
+            // Cerebro de IA simulado para responder cualquier cosa que escriba
+            let respuestaIA = `<strong>🤖 FCG AI Intelligence:</strong><br><br>`;
+            respuestaIA += `Has consultado sobre: <em>"${query}"</em>.<br><br>`;
+            respuestaIA += `Como motor de búsqueda independiente de FGC, te explico que este concepto recopila información clave sobre tecnología, análisis detallados y explicaciones lógicas avanzadas para resolver todas tus dudas al instante dentro de tu propia plataforma.`;
 
-            if (qLower.includes("raiz de 8") || qLower.includes("raíz de 8")) {
-                aiText += "La raíz cuadrada de 8 (√8) es exactamente <strong>2.828427...</strong> Es un cálculo matemático exacto procesado por el motor interno de FCG.";
-            } else if (qLower.includes("roblox") || qLower.includes("juego")) {
-                aiText += "Tema detectado: <strong>Videojuegos y Roblox</strong>. Este sector incluye desarrollo con Lua, mapas personalizados, experiencias multijugador y servidores optimizados.";
-            } else if (qLower.includes("hola")) {
-                aiText += "¡Hola de nuevo, pro! Tu navegador FCG Search está funcionando al 100% y listo para procesar cualquier consulta que le pongas.";
-            } else {
-                aiText += `Información procesada sobre <strong>${query}</strong>: Este término contiene múltiples referencias tecnológicas, culturales y de entretenimiento que FCG Search recopila de forma inteligente para ti.`;
-            }
+            document.getElementById('aiCardContent').innerHTML = respuestaIA;
 
-            document.getElementById('aiCardContent').innerHTML = aiText;
-
-            // Generar videos simulados relacionados
+            // Generar videos falsos personalizados con lo que buscó
             let videosHtml = `
-                <div class="video-card" onclick="alert('Reproduciendo video simulado de: ${query}')">
-                    <div class="video-thumb">▶️🎮</div>
-                    <div class="video-title">Guía definitiva y trucos de ${query}</div>
+                <div class="video-card" onclick="alert('Abriendo reproductor interno para: ${query}')">
+                    <div class="video-thumb">▶️🔥</div>
+                    <div class="video-title">Todo sobre ${query} explicado paso a paso</div>
                 </div>
-                <div class="video-card" onclick="alert('Reproduciendo video simulado de: ${query}')">
-                    <div class="video-thumb">🎥🔥</div>
-                    <div class="video-title">Análisis completo en 4K sobre ${query}</div>
+                <div class="video-card" onclick="alert('Abriendo reproductor interno para: ${query}')">
+                    <div class="video-thumb">🎮⚡</div>
+                    <div class="video-title">Guía definitiva y secretos de ${query}</div>
                 </div>
-                <div class="video-card" onclick="alert('Reproduciendo video simulado de: ${query}')">
-                    <div class="video-thumb">⚡🏆</div>
-                    <div class="video-title">Todo lo que debes saber de ${query} en 2026</div>
+                <div class="video-card" onclick="alert('Abriendo reproductor interno para: ${query}')">
+                    <div class="video-thumb">🚀💎</div>
+                    <div class="video-title">Análisis en vivo y pruebas de ${query}</div>
                 </div>
             `;
             document.getElementById('videosContainerContent').innerHTML = videosHtml;
         }
 
         function buscarClick() {
-            let fakeEvent = { preventDefault: function() {} };
-            ejecutarMotor(fakeEvent);
+            realizarBusquedaInterna(null);
         }
 
         function volverInicio() {
@@ -275,8 +262,8 @@
         }
 
         function suerteGamer() {
-            document.getElementById('searchInput').value = "Modo Dios FCG";
-            ejecutarMotor({ preventDefault: function() {} });
+            document.getElementById('searchInput').value = "Modo Dios FCG Activo";
+            realizarBusquedaInterna(null);
         }
     </script>
 
