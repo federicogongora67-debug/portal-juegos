@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FCG Search - Math Pro Edition</title>
+    <title>FCG Search - Ultimate AI Engine</title>
     <style>
         body {
             margin: 0;
@@ -141,11 +141,11 @@
 
     <div class="main-container" id="containerMain">
         <div class="logo">FCG Search</div>
-        <div class="subtitle">WhatsApp Math Core</div>
+        <div class="subtitle">Ultimate AI Neural Core</div>
         
         <div class="search-box-container">
             <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22"><path fill="#bc13fe" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 10 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
-            <input type="text" id="searchInput" placeholder="Escribe tu mensaje o cálculo y presiona Enter..." autocomplete="off">
+            <input type="text" id="searchInput" placeholder="Escribe cualquier pregunta, cálculo o duda y presiona Enter..." autocomplete="off">
         </div>
 
         <div class="buttons">
@@ -161,7 +161,7 @@
     </div>
 
     <footer>
-        ⚡ FCG Chat &bull; Con Matemáticas y Motor Total ⚡
+        ⚡ FCG Chat &bull; Inteligencia Total y Motor Matemático Avanzado ⚡
     </footer>
 
     <script>
@@ -171,6 +171,11 @@
                 lanzarBusqueda();
             }
         });
+
+        function extraerNumero(texto) {
+            let match = texto.match(/-?\d+(\.\d+)?/);
+            return match ? parseFloat(match[0]) : null;
+        }
 
         function lanzarBusqueda() {
             let inputElem = document.getElementById('searchInput');
@@ -192,39 +197,44 @@
 
             let emocionElegida = bancoEmociones[Math.floor(Math.random() * bancoEmociones.length)];
             let contenidoExplicacion = "";
+            let num = extraerNumero(qLower);
 
-            // MOTOR MATEMÁTICO AUTOMÁTICO PARA RAÍCES Y LOGARITMOS UNIVERSALES
-            if (qLower.includes("raiz") || qLower.includes("raíz")) {
-                let match = query.match(/(\d+(\.\d+)?)/);
-                if (match) {
-                    let num = parseFloat(match[0]);
-                    let resultado = Math.sqrt(num);
-                    contenidoExplicacion = `Calculando la raíz cuadrada de ${num}: da exactamente <strong>${resultado}</strong>. ¡Facilísimo, bro!`;
+            // MOTOR INTELIGENTE INTEGRAL (Matemáticas, Programación, Ciencia y Cultura General)
+            if ((qLower.includes("raiz") || qLower.includes("raíz")) && num !== null) {
+                let res = Math.sqrt(num);
+                contenidoExplicacion = `La raíz cuadrada de ${num} es exactamente <strong>${res}</strong>. ¡Calculado al toque, bro!`;
+            } else if ((qLower.includes("log") || qLower.includes("logaritmo")) && num !== null) {
+                let log10 = Math.log10(num).toFixed(4);
+                let ln = Math.log(num).toFixed(4);
+                contenidoExplicacion = `Para el número ${num}: el logaritmo base 10 es <strong>${log10}</strong> y el logaritmo natural (ln) es <strong>${ln}</strong>. ¡Todo exacto!`;
+            } else if ((qLower.includes("cuadrado") || qLower.includes("potencia")) && num !== null) {
+                let res = Math.pow(num, 2);
+                contenidoExplicacion = `El cuadrado de ${num} (${num} × ${num}) da como resultado <strong>${res}</strong>. ¡Facilísimo!`;
+            } else if (qLower.includes("cubo") && num !== null) {
+                let res = Math.pow(num, 3);
+                contenidoExplicacion = `El cubo de ${num} es igual a <strong>${res}</strong>. ¡Memoria matemática al 100%!`;
+            } else if (qLower.includes("porcentaje") || qLower.includes("%")) {
+                let numeros = qLower.match(/-?\d+(\.\d+)?/g);
+                if (numeros && numeros.length >= 2) {
+                    let p = parseFloat(numeros[0]);
+                    let t = parseFloat(numeros[1]);
+                    let res = (p * t) / 100;
+                    contenidoExplicacion = `El ${p}% de ${t} es <strong>${res}</strong>. ¡Listo para sacarle provecho!`;
                 } else {
-                    contenidoExplicacion = "Para sacar una raíz cuadrada, pásame el número exacto, por ejemplo: 'raíz de 25' o 'raiz de 50' y te lo calculo al toque.";
+                    contenidoExplicacion = "Para sacar porcentajes, pásame los datos bien, por ejemplo: '15 por ciento de 200' y te lo calculo.";
                 }
-            } else if (qLower.includes("log") || qLower.includes("logaritmo")) {
-                let match = query.match(/(\d+(\.\d+)?)/);
-                if (match) {
-                    let num = parseFloat(match[0]);
-                    let resultadoLog10 = Math.log10(num).toFixed(4);
-                    let resultadoLn = Math.log(num).toFixed(4);
-                    contenidoExplicacion = `El logaritmo base 10 de ${num} es <strong>${resultadoLog10}</strong> y el logaritmo natural (ln) es <strong>${resultadoLn}</strong>. ¡Todo calculado de una!`;
-                } else {
-                    contenidoExplicacion = "Para calcular logaritmos, dime el número, por ejemplo: 'log de 100' y te tiro el resultado de una vez.";
-                }
-            } else if (qLower.includes("quién soy") || qLower.includes("sabes quién soy") || qLower.includes("mi nombre")) {
-                contenidoExplicacion = "Ni idea, bro, para mí eres un usuario totalmente anónimo porque no me has dicho tu nombre ni te conozco de antes.";
-            } else if (qLower.includes("roblox") || qLower.includes("script") || qLower.includes("lua") || qLower.includes("studio")) {
-                contenidoExplicacion = "Ahí se usa <strong>Lua</strong> en el Roblox Studio. Con eso armas los scripts de los servers y los clientes para programar todas las mecánicas, interfaces y sistemas del juego.";
-            } else if (qLower.includes("espacio") || qLower.includes("universo") || qLower.includes("agujero negro") || qLower.includes("fisica")) {
-                contenidoExplicacion = "El universo es gigante. Los agujeros negros tienen una gravedad tan brutal que ni la luz puede escapar de lo hondo que están.";
-            } else if (qLower.includes("programacion") || qLower.includes("codigo") || qLower.includes("javascript") || qLower.includes("html")) {
-                contenidoExplicacion = "Programar es tirarle instrucciones a la compu para que haga lo que quieras. HTML arma la estructura, CSS le da los colores chulos y JS pone toda la lógica interactiva.";
-            } else if (qLower.includes("motor") || qLower.includes("moto") || qLower.includes("110cc")) {
-                contenidoExplicacion = "Una moto de 110cc es ligera, traga re poquita gasolina y te sirve perfecto para moverte por la ciudad sin gastar casi nada.";
+            } else if (qLower.includes("roblox") || qLower.includes("script") || qLower.includes("lua") || qLower.includes("studio") || qLower.includes("juego")) {
+                contenidoExplicacion = "En Roblox se utiliza el lenguaje <strong>Lua</strong> dentro de Roblox Studio. Sirve para programar scripts de servidor y cliente, creando mecánicas, interfaces y sistemas interactivos avanzados.";
+            } else if (qLower.includes("espacio") || qLower.includes("universo") || qLower.includes("agujero negro") || qLower.includes("fisica") || qLower.includes("gravedad")) {
+                contenidoExplicacion = "El universo abarca todo el espacio y la materia. Los agujeros negros poseen una gravedad tan extrema que deforman el espacio-tiempo e impiden que incluso la luz escape.";
+            } else if (qLower.includes("programacion") || qLower.includes("codigo") || qLower.includes("javascript") || qLower.includes("html") || qLower.includes("css")) {
+                contenidoExplicacion = "La programación permite dar instrucciones lógicas a las computadoras. HTML estructura el contenido, CSS diseña la interfaz visual y JavaScript controla toda la interactividad.";
+            } else if (qLower.includes("motor") || qLower.includes("moto") || qLower.includes("110cc") || qLower.includes("vehiculo")) {
+                contenidoExplicacion = "Las motos de 110cc son vehículos urbanos muy eficientes, ligeros y con un consumo de combustible sumamente bajo, perfectos para el día a día.";
+            } else if (qLower.includes("ia") || qLower.includes("inteligencia artificial") || qLower.includes("chatbot")) {
+                contenidoExplicacion = "La inteligencia artificial simula procesos cognitivos humanos mediante redes neuronales y algoritmos masivos para procesar lenguaje, resolver problemas y generar contenido.";
             } else {
-                contenidoExplicacion = `Estuve chequeando lo que me pusiste sobre <em>"${query}"</em> y la verdad abarca un montón de cosas interesantes, conceptos clave y detalles técnicos que hacen que funcione a la perfección.`;
+                contenidoExplicacion = `Analizando a fondo tu consulta sobre <em>"${query}"</em>, te comparto que abarca conceptos clave, principios teóricos avanzados y múltiples aplicaciones prácticas que determinan su funcionamiento en el mundo real.`;
             }
 
             let respuestaFinal = `<strong>chat FCG:</strong> ${emocionElegida.emoji} ${emocionElegida.tono}<br><br>${contenidoExplicacion}`;
@@ -240,7 +250,7 @@
         }
 
         function suerteGamer() {
-            document.getElementById('searchInput').value = "raíz cuadrada de 144";
+            document.getElementById('searchInput').value = "raíz cuadrada de 225";
             lanzarBusqueda();
         }
     </script>
