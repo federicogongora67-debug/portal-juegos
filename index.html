@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FCG Search - Gemini AI Engine</title>
+    <title>FCG Systems Help - Asistente de Sistemas</title>
     <style>
         body {
             margin: 0;
@@ -135,6 +135,13 @@
         .ai-card strong {
             color: #c084fc;
         }
+        .ai-card code {
+            background: #111214;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #f472b6;
+            font-family: monospace;
+        }
         
         footer {
             background-color: #111214;
@@ -151,22 +158,22 @@
 <body>
 
     <header>
-        <div class="header-title">✨ FCG Gemini Core</div>
+        <div class="header-title">✨ FCG Systems Core</div>
         <a href="https://github.com/federicogongora67-debug" target="_blank">GitHub Pro</a>
     </header>
 
     <div class="main-container" id="containerMain">
         <div class="gemini-logo">FCG</div>
-        <div class="subtitle">¿De qué te gustaría hablar hoy?</div>
+        <div class="subtitle">Asistente experto en sistemas operativos y comandos</div>
         
         <div class="search-box-container">
             <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22"><path fill="#a855f7" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 10 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
-            <input type="text" id="searchInput" placeholder="Pregunta sobre matemáticas, Linux, geografía, comandos o cultura..." autocomplete="off">
+            <input type="text" id="searchInput" placeholder="Ej: comandos de linux, ver ip en windows, reiniciar servicios..." autocomplete="off">
         </div>
 
         <div class="buttons">
-            <button type="button" onclick="lanzarBusqueda()">Enviar Consulta</button>
-            <button type="button" onclick="suerteGamer()">¡Pregunta Aleatoria!</button>
+            <button type="button" onclick="lanzarBusqueda()">Consultar Sistema</button>
+            <button type="button" onclick="suerteGamer()">Ejemplo Linux</button>
         </div>
     </div>
 
@@ -177,7 +184,7 @@
     </div>
 
     <footer>
-        ✨ FCG Gemini Core &bull; Inteligencia Universal y Sistemas Operativos
+        ✨ FCG Systems Core &bull; Soporte y Comandos para Sistemas Operativos
     </footer>
 
     <script>
@@ -187,11 +194,6 @@
                 lanzarBusqueda();
             }
         });
-
-        function extraerNumeros(texto) {
-            let matches = texto.match(/-?\d+(\.\d+)?/g);
-            return matches ? matches.map(Number) : [];
-        }
 
         function lanzarBusqueda() {
             let inputElem = document.getElementById('searchInput');
@@ -203,52 +205,37 @@
             resultsDiv.style.display = "block";
 
             let qLower = query.toLowerCase();
-            let nums = extraerNumeros(qLower);
             let respuestaCore = "";
 
-            // MOTOR UNIVERSAL EXTENDIDO: MATEMÁTICAS, GEOGRAFÍA, VIDA COTIDIANA, CULTURA Y SISTEMAS (LINUX/WINDOWS)
-            if ((qLower.includes("raiz") || qLower.includes("raíz")) && nums.length > 0) {
-                let res = Math.sqrt(nums[0]);
-                respuestaCore = `La raíz cuadrada de ${nums[0]} es <strong>${res}</strong>.`;
-            } else if ((qLower.includes("log") || qLower.includes("logaritmo")) && nums.length > 0) {
-                let log10 = Math.log10(nums[0]).toFixed(4);
-                let ln = Math.log(nums[0]).toFixed(4);
-                respuestaCore = `El logaritmo base 10 de ${nums[0]} es <strong>${log10}</strong> y el logaritmo natural es <strong>${ln}</strong>.`;
-            } else if (qLower.includes("afrolocombianidad") || qLower.includes("afrocolombianidad")) {
-                respuestaCore = `El <strong>Día de la Afrocolombianidad</strong> se conmemora cada <strong>21 de mayo</strong> en Colombia. Esta fecha celebra la abolición de la esclavitud en el país en el año 1851, reconociendo el aporte cultural, histórico y social de las comunidades negras, afrodescendientes, raizales y palenqueras.`;
-            } else if (qLower.includes("linux") || qLower.includes("ubuntu") || qLower.includes("debian") || qLower.includes("terminal") || qLower.includes("comando")) {
-                respuestaCore = `En sistemas operativos basados en Linux, los comandos esenciales de terminal incluyen: 
-                <br>• <code>ls</code>: Lista archivos y carpetas del directorio actual.
-                <br>• <code>cd</code>: Cambia de directorio o carpeta.
-                <br>• <code>sudo apt update && sudo apt upgrade</code>: Actualiza los paquetes del sistema (en distribuciones como Ubuntu o Debian).
-                <br>• <code>htop</code> o <code>top</code>: Monitorea el uso de CPU y memoria RAM en tiempo real.`;
-            } else if (qLower.includes("windows") || qLower.includes("cmd") || qLower.includes("powershell")) {
-                respuestaCore = `En sistemas Windows, los comandos de consola más útiles son:
-                <br>• <code>dir</code>: Muestra los archivos del directorio.
-                <br>• <code>ipconfig</code>: Consulta la configuración de red y dirección IP local.
-                <br>• <code>sfc /scannow</code>: Analiza y repara archivos dañados del sistema.
-                <br>• <code>taskmgr</code>: Abre directamente el Administrador de Tareas.`;
-            } else if (qLower.includes("vehiculo") || qLower.includes("auto") || qLower.includes("moto") || qLower.includes("transporte")) {
-                respuestaCore = `Los vehículos de transporte terrestre (como automóviles, motocicletas y camiones) funcionan mediante motores de combustión interna o sistemas eléctricos, optimizando la movilidad urbana y la logística comercial diaria.`;
-            } else if (qLower.includes("geografia") || qLower.includes("pais") || qLower.includes("capital") || qLower.includes("continente")) {
-                respuestaCore = `La geografía estudia las características físicas de la Tierra, los relieves, los climas y la organización de la población en continentes, países y ciudades principales de todo el globo terráqueo.`;
-            } else if (qLower.includes("porcentaje") || qLower.includes("%")) {
-                if (nums.length >= 2) {
-                    let res = (nums[0] * nums[1]) / 100;
-                    respuestaCore = `El ${nums[0]}% de ${nums[1]} es <strong>${res}</strong>.`;
-                } else {
-                    respuestaCore = "Ingresa ambos valores para calcular el porcentaje correctamente.";
-                }
-            } else if (qLower.includes("media") || qLower.includes("promedio")) {
-                if (nums.length > 0) {
-                    let suma = nums.reduce((a, b) => a + b, 0);
-                    let media = suma / nums.length;
-                    respuestaCore = `La media estadística es <strong>${media.toFixed(2)}</strong>.`;
-                } else {
-                    respuestaCore = "Ingresa los números separados para calcular la media estadística.";
-                }
+            // BASE DE DATOS DE SISTEMAS OPERATIVOS, COMANDOS Y AYUDA PARA PRINCIPIANTES
+            if (qLower.includes("linux") || qLower.includes("ubuntu") || qLower.includes("debian") || qLower.includes("terminal")) {
+                respuestaCore = `<strong>Guía rápida de Linux para principiantes:</strong><br>
+                La terminal es una interfaz de comandos para controlar el sistema operativo. Aquí tienes los comandos básicos indispensables:
+                <br>• <code>ls</code>: Muestra todos los archivos y carpetas de la ubicación actual.
+                <br>• <code>cd [carpeta]</code>: Permite entrar a una carpeta específica (ej: <code>cd Documentos</code>).
+                <br>• <code>pwd</code>: Te indica en qué ruta exacta del equipo estás parado.
+                <br>• <code>mkdir [nombre]</code>: Crea una nueva carpeta.
+                <br>• <code>sudo apt update</code>: Actualiza los repositorios de paquetes del sistema.`;
+            } else if (qLower.includes("windows") || qLower.includes("cmd") || qLower.includes("powershell") || qLower.includes("pc")) {
+                respuestaCore = `<strong>Guía rápida de Windows (Sistemas y Consola):</strong><br>
+                Para solucionar problemas comunes desde la consola de comandos (CMD o PowerShell):
+                <br>• <code>dir</code>: Lista los archivos y carpetas del directorio actual.
+                <br>• <code>ipconfig</code>: Muestra la dirección IP local y datos de la red conectados.
+                <br>• <code>sfc /scannow</code>: Busca y repara archivos del sistema operativos dañados de forma automática.
+                <br>• <code>taskmgr</code>: Abre el Administrador de Tareas para cerrar programas congelados.`;
+            } else if (qLower.includes("red") || qLower.includes("ip") || qLower.includes("internet") || qLower.includes("ping")) {
+                respuestaCore = `<strong>Diagnóstico de Red en Sistemas:</strong><br>
+                Para verificar la conexión a internet y el estado de la red:
+                <br>• <code>ping google.com</code>: Envía paquetes de prueba para verificar si hay conexión activa con internet.
+                <br>• <code>ipconfig</code> (en Windows) o <code>ifconfig</code> / <code>ip a</code> (en Linux): Permiten visualizar la configuración de red y las direcciones IP asignadas al equipo.`;
+            } else if (qLower.includes("proceso") || qLower.includes("memoria") || qLower.includes("cpu") || qLower.includes("ram")) {
+                respuestaCore = `<strong>Monitoreo de Recursos del Sistema:</strong><br>
+                Para saber qué consume memoria y procesador:
+                <br>• En Linux: Usa <code>htop</code> o <code>top</code> para ver los procesos en tiempo real y cerrarlos si es necesario.
+                <br>• En Windows: Usa <code>taskmgr</code> para abrir el Administrador de Tareas y revisar el rendimiento de la CPU y la memoria RAM.`;
             } else {
-                respuestaCore = `Consulta procesada: <strong>${query}</strong> abarca principios fundamentales de matemáticas, sistemas operativos, cultura general y aplicaciones prácticas del entorno actual.`;
+                respuestaCore = `<strong>Asistente de Sistemas:</strong><br>
+                Para tu consulta sobre <em>"${query}"</em>, te recomiendo verificar los comandos básicos del sistema operativo correspondiente (Linux o Windows). Escribe palabras clave como <strong>"linux"</strong>, <strong>"windows"</strong> o <strong>"red"</strong> para ver guías detalladas paso a paso diseñadas para principiantes.`;
             }
 
             document.getElementById('aiCardContent').innerHTML = respuestaCore;
@@ -262,7 +249,7 @@
         }
 
         function suerteGamer() {
-            document.getElementById('searchInput').value = "Día de la Afrocolombianidad";
+            document.getElementById('searchInput').value = "comandos basicos de linux";
             lanzarBusqueda();
         }
     </script>
