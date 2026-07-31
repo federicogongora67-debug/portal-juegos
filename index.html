@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FCG Search - Ultimate AI Engine</title>
+    <title>FCG Search - Ultimate Omni Core</title>
     <style>
         body {
             margin: 0;
@@ -141,11 +141,11 @@
 
     <div class="main-container" id="containerMain">
         <div class="logo">FCG Search</div>
-        <div class="subtitle">Ultimate AI Neural Core</div>
+        <div class="subtitle">WhatsApp Omni Core Plus</div>
         
         <div class="search-box-container">
             <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22"><path fill="#bc13fe" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 10 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
-            <input type="text" id="searchInput" placeholder="Escribe cualquier pregunta, cálculo o duda y presiona Enter..." autocomplete="off">
+            <input type="text" id="searchInput" placeholder="Escribe tu consulta y presiona Enter..." autocomplete="off">
         </div>
 
         <div class="buttons">
@@ -161,7 +161,7 @@
     </div>
 
     <footer>
-        ⚡ FCG Chat &bull; Inteligencia Total y Motor Matemático Avanzado ⚡
+        ⚡ FCG Chat &bull; Motor Científico, Matemático y Estadístico Extendido ⚡
     </footer>
 
     <script>
@@ -172,9 +172,9 @@
             }
         });
 
-        function extraerNumero(texto) {
-            let match = texto.match(/-?\d+(\.\d+)?/);
-            return match ? parseFloat(match[0]) : null;
+        function extraerNumeros(texto) {
+            let matches = texto.match(/-?\d+(\.\d+)?/g);
+            return matches ? matches.map(Number) : [];
         }
 
         function lanzarBusqueda() {
@@ -189,55 +189,93 @@
             let qLower = query.toLowerCase();
 
             const bancoEmociones = [
-                { emoji: "😎👊", tono: "¡Uf, claro que sí! Mira, analizando eso te cuento lo siguiente:" },
-                { emoji: "🔥🙌", tono: "¡Es una pasada ese tema! Te explico al detalle cómo viene la mano:" },
-                { emoji: "⚡😂", tono: "¡Jajaja, temazo trajiste! Anótate esta info que te tiro:" },
-                { emoji: "🚀😎", tono: "¡Obvio, pa! Te lo resumo rapidito y bien explicado:" }
+                { emoji: "😎👊", tono: "¡Uf, claro que sí! Te lo explico directo y sin vueltas:" },
+                { emoji: "🔥🙌", tono: "¡Temazo total! Aquí tienes la respuesta precisa:" },
+                { emoji: "⚡😂", tono: "¡Jajaja, obvio pa! Anota este dato exacto:" },
+                { emoji: "🚀😎", tono: "¡Listo y al grano! Así viene la mano:" }
             ];
 
             let emocionElegida = bancoEmociones[Math.floor(Math.random() * bancoEmociones.length)];
-            let contenidoExplicacion = "";
-            let num = extraerNumero(qLower);
+            let nums = extraerNumeros(qLower);
+            let respuestaCore = "";
 
-            // MOTOR INTELIGENTE INTEGRAL (Matemáticas, Programación, Ciencia y Cultura General)
-            if ((qLower.includes("raiz") || qLower.includes("raíz")) && num !== null) {
-                let res = Math.sqrt(num);
-                contenidoExplicacion = `La raíz cuadrada de ${num} es exactamente <strong>${res}</strong>. ¡Calculado al toque, bro!`;
-            } else if ((qLower.includes("log") || qLower.includes("logaritmo")) && num !== null) {
-                let log10 = Math.log10(num).toFixed(4);
-                let ln = Math.log(num).toFixed(4);
-                contenidoExplicacion = `Para el número ${num}: el logaritmo base 10 es <strong>${log10}</strong> y el logaritmo natural (ln) es <strong>${ln}</strong>. ¡Todo exacto!`;
-            } else if ((qLower.includes("cuadrado") || qLower.includes("potencia")) && num !== null) {
-                let res = Math.pow(num, 2);
-                contenidoExplicacion = `El cuadrado de ${num} (${num} × ${num}) da como resultado <strong>${res}</strong>. ¡Facilísimo!`;
-            } else if (qLower.includes("cubo") && num !== null) {
-                let res = Math.pow(num, 3);
-                contenidoExplicacion = `El cubo de ${num} es igual a <strong>${res}</strong>. ¡Memoria matemática al 100%!`;
+            // COMANDO INTEGRAL MASIVO (Matemáticas, Estadística, Química, Naturales y Vida Cotidiana)
+            if ((qLower.includes("raiz") || qLower.includes("raíz")) && nums.length > 0) {
+                let res = Math.sqrt(nums[0]);
+                respuestaCore = `La raíz cuadrada de ${nums[0]} es <strong>${res}</strong>.`;
+            } else if ((qLower.includes("log") || qLower.includes("logaritmo")) && nums.length > 0) {
+                let log10 = Math.log10(nums[0]).toFixed(4);
+                let ln = Math.log(nums[0]).toFixed(4);
+                respuestaCore = `Log10 de ${nums[0]} es <strong>${log10}</strong> y el logaritmo natural (ln) es <strong>${ln}</strong>.`;
+            } else if ((qLower.includes("cuadrado") || qLower.includes("potencia")) && nums.length > 0) {
+                let res = Math.pow(nums[0], 2);
+                respuestaCore = `El cuadrado de ${nums[0]} es <strong>${res}</strong>.`;
+            } else if (qLower.includes("cubo") && nums.length > 0) {
+                let res = Math.pow(nums[0], 3);
+                respuestaCore = `El cubo de ${nums[0]} es <strong>${res}</strong>.`;
             } else if (qLower.includes("porcentaje") || qLower.includes("%")) {
-                let numeros = qLower.match(/-?\d+(\.\d+)?/g);
-                if (numeros && numeros.length >= 2) {
-                    let p = parseFloat(numeros[0]);
-                    let t = parseFloat(numeros[1]);
-                    let res = (p * t) / 100;
-                    contenidoExplicacion = `El ${p}% de ${t} es <strong>${res}</strong>. ¡Listo para sacarle provecho!`;
+                if (nums.length >= 2) {
+                    let res = (nums[0] * nums[1]) / 100;
+                    respuestaCore = `El ${nums[0]}% de ${nums[1]} es <strong>${res}</strong>.`;
                 } else {
-                    contenidoExplicacion = "Para sacar porcentajes, pásame los datos bien, por ejemplo: '15 por ciento de 200' y te lo calculo.";
+                    respuestaCore = "Ingresa ambos valores para calcular el porcentaje correctamente.";
                 }
-            } else if (qLower.includes("roblox") || qLower.includes("script") || qLower.includes("lua") || qLower.includes("studio") || qLower.includes("juego")) {
-                contenidoExplicacion = "En Roblox se utiliza el lenguaje <strong>Lua</strong> dentro de Roblox Studio. Sirve para programar scripts de servidor y cliente, creando mecánicas, interfaces y sistemas interactivos avanzados.";
-            } else if (qLower.includes("espacio") || qLower.includes("universo") || qLower.includes("agujero negro") || qLower.includes("fisica") || qLower.includes("gravedad")) {
-                contenidoExplicacion = "El universo abarca todo el espacio y la materia. Los agujeros negros poseen una gravedad tan extrema que deforman el espacio-tiempo e impiden que incluso la luz escape.";
-            } else if (qLower.includes("programacion") || qLower.includes("codigo") || qLower.includes("javascript") || qLower.includes("html") || qLower.includes("css")) {
-                contenidoExplicacion = "La programación permite dar instrucciones lógicas a las computadoras. HTML estructura el contenido, CSS diseña la interfaz visual y JavaScript controla toda la interactividad.";
-            } else if (qLower.includes("motor") || qLower.includes("moto") || qLower.includes("110cc") || qLower.includes("vehiculo")) {
-                contenidoExplicacion = "Las motos de 110cc son vehículos urbanos muy eficientes, ligeros y con un consumo de combustible sumamente bajo, perfectos para el día a día.";
-            } else if (qLower.includes("ia") || qLower.includes("inteligencia artificial") || qLower.includes("chatbot")) {
-                contenidoExplicacion = "La inteligencia artificial simula procesos cognitivos humanos mediante redes neuronales y algoritmos masivos para procesar lenguaje, resolver problemas y generar contenido.";
+            } else if (qLower.includes("media") || qLower.includes("promedio")) {
+                if (nums.length > 0) {
+                    let suma = nums.reduce((a, b) => a + b, 0);
+                    let media = suma / nums.length;
+                    respuestaCore = `La media estadística (promedio) es <strong>${media.toFixed(2)}</strong>.`;
+                } else {
+                    respuestaCore = "Ingresa los números separados para calcular la media estadística.";
+                }
+            } else if (qLower.includes("mediana")) {
+                if (nums.length > 0) {
+                    let ordenados = [...nums].sort((a, b) => a - b);
+                    let mitad = Math.floor(ordenados.length / 2);
+                    let mediana = ordenados.length % 2 !== 0 ? ordenados[mitad] : (ordenados[mitad - 1] + ordenados[mitad]) / 2;
+                    respuestaCore = `La mediana estadística es <strong>${mediana}</strong>.`;
+                } else {
+                    respuestaCore = "Ingresa los números para calcular la mediana.";
+                }
+            } else if (qLower.includes("moda")) {
+                if (nums.length > 0) {
+                    let conteo = {};
+                    let maxFrecuencia = 0;
+                    let moda = [];
+                    nums.forEach(n => {
+                        conteo[n] = (conteo[n] || 0) + 1;
+                        if (conteo[n] > maxFrecuencia) {
+                            maxFrecuencia = conteo[n];
+                            moda = [n];
+                        } else if (conteo[n] === maxFrecuencia && !moda.includes(n)) {
+                            moda.push(n);
+                        }
+                    });
+                    respuestaCore = `La moda estadística es <strong>${moda.join(', ')}</strong>.`;
+                } else {
+                    respuestaCore = "Ingresa los datos numéricos para calcular la moda.";
+                }
+            } else if (qLower.includes("ph") || qLower.includes("acidez")) {
+                respuestaCore = "El pH mide la concentración de iones de hidrógeno. Va de 0 a 14: menor a 7 es ácido, 7 es neutro y mayor a 7 es básico o alcalino.";
+            } else if (qLower.includes("tabla periodica") || qLower.includes("elemento") || qLower.includes("quimica")) {
+                respuestaCore = "La química estudia la materia, sus propiedades y reacciones. Los elementos en la tabla periódica se organizan por su número atómico y propiedades.";
+            } else if (qLower.includes("fotosintesis") || qLower.includes("plantas") || qLower.includes("naturales")) {
+                respuestaCore = "La fotosíntesis es el proceso bioquímico donde las plantas convierten luz solar, agua y dióxido de carbono en glucosa y oxígeno.";
+            } else if (qLower.includes("celula") || qLower.includes("biologia")) {
+                respuestaCore = "La célula es la unidad estructural y funcional básica de todos los seres vivos, pudiendo ser procariota o eucariota.";
+            } else if (qLower.includes("gravedad") || qLower.includes("fisica") || qLower.includes("velocidad")) {
+                respuestaCore = "En física, la aceleración de la gravedad estándar en la Tierra es de aproximadamente 9.81 metros por segundo al cuadrado.";
+            } else if (qLower.includes("roblox") || qLower.includes("lua") || qLower.includes("studio")) {
+                respuestaCore = "En Roblox se utiliza el lenguaje <strong>Lua</strong> en Roblox Studio para programar sistemas, scripts y mecánicas de juego.";
+            } else if (qLower.includes("programacion") || qLower.includes("codigo") || qLower.includes("javascript") || qLower.includes("html")) {
+                respuestaCore = "Programar es estructurar instrucciones lógicas mediante lenguajes como HTML, CSS o JavaScript para computadoras y web.";
+            } else if (qLower.includes("moto") || qLower.includes("110cc") || qLower.includes("motor")) {
+                respuestaCore = "Una moto de 110cc es ligera, económica y ofrece un rendimiento de combustible ideal para traslados urbanos diarios.";
             } else {
-                contenidoExplicacion = `Analizando a fondo tu consulta sobre <em>"${query}"</em>, te comparto que abarca conceptos clave, principios teóricos avanzados y múltiples aplicaciones prácticas que determinan su funcionamiento en el mundo real.`;
+                respuestaCore = `Consulta procesada con éxito: <strong>${query}</strong> abarca conceptos clave de ciencias, matemáticas y aplicación práctica general.`;
             }
 
-            let respuestaFinal = `<strong>chat FCG:</strong> ${emocionElegida.emoji} ${emocionElegida.tono}<br><br>${contenidoExplicacion}`;
+            let respuestaFinal = `<strong>chat FCG:</strong> ${emocionElegida.emoji} ${emocionElegida.tono}<br><br>${respuestaCore}`;
 
             document.getElementById('aiCardContent').innerHTML = respuestaFinal;
         }
@@ -250,7 +288,7 @@
         }
 
         function suerteGamer() {
-            document.getElementById('searchInput').value = "raíz cuadrada de 225";
+            document.getElementById('searchInput').value = "media de 10 20 30 40 50";
             lanzarBusqueda();
         }
     </script>
