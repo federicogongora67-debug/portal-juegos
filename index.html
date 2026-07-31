@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FCG Search - AI Edition</title>
+    <title>FCG Search - Ultimate Gamer Engine</title>
     <style>
         body {
             margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0d0221, #190933, #2b1055);
+            color: #e0d4fc;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #0d0221, #190933, #2b1055);
-            color: #e0d4fc;
         }
         header {
             display: flex;
@@ -30,7 +30,6 @@
         }
         header a:hover {
             color: #f3e7ff;
-            text-shadow: 0 0 12px rgba(243, 231, 255, 0.8);
         }
         .main-container {
             display: flex;
@@ -38,12 +37,12 @@
             align-items: center;
             margin-top: -5vh;
             padding: 0 20px;
+            transition: 0.4s ease;
         }
         .logo {
             font-size: 85px;
             font-weight: 900;
             letter-spacing: -2px;
-            margin-bottom: 0px;
             font-family: 'Courier New', monospace;
             color: #ffffff;
             text-shadow: 0 0 20px #bc13fe, 0 0 40px #7b2cbf;
@@ -104,22 +103,66 @@
             transform: scale(1.05);
             box-shadow: 0 0 25px rgba(188, 19, 254, 0.8);
         }
-        /* Contenedor de respuestas inteligentes de la IA */
-        .ai-response {
-            margin-top: 25px;
-            width: 650px;
-            max-width: 90%;
+        
+        /* Resultados internos (IA + Videos + Enlaces) */
+        .results-section {
+            display: none;
+            width: 750px;
+            max-width: 95%;
+            margin: 30px auto;
+            text-align: left;
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .ai-card {
             background: rgba(15, 5, 30, 0.95);
             border: 2px solid #bc13fe;
-            border-radius: 15px;
+            border-radius: 12px;
             padding: 20px;
-            display: none;
+            margin-bottom: 20px;
+            box-shadow: 0 0 25px rgba(188, 19, 254, 0.3);
             font-size: 16px;
-            color: #f3e7ff;
-            box-shadow: 0 0 30px rgba(188, 19, 254, 0.4);
-            text-align: left;
             line-height: 1.5;
         }
+        .videos-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .video-card {
+            background: rgba(22, 10, 45, 0.9);
+            border: 1px solid #7b2cbf;
+            border-radius: 8px;
+            padding: 12px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .video-card:hover {
+            border-color: #bc13fe;
+            transform: translateY(-3px);
+            box-shadow: 0 0 15px rgba(188, 19, 254, 0.4);
+        }
+        .video-thumb {
+            width: 100%;
+            height: 110px;
+            background: #2b1055;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+        .video-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: #f3e7ff;
+        }
+        
         footer {
             background-color: rgba(10, 3, 20, 0.9);
             color: #9d4edd;
@@ -128,7 +171,7 @@
             border-top: 1px solid #3c096c;
             text-align: center;
             letter-spacing: 1px;
-            margin-top: 30px;
+            margin-top: 40px;
         }
     </style>
 </head>
@@ -136,87 +179,104 @@
 
     <header>
         <a href="https://github.com/federicogongora67-debug" target="_blank">GitHub Pro</a>
-        <a href="#" onclick="alert('FCG Search AI: Pregúntame sobre ciencia, videojuegos, mates o lo que quieras saber directamente aquí.');">Acerca de IA</a>
+        <a href="#" onclick="alert('FCG Search Gamer Engine v3.0 - Motor interno independiente sin salir de tu web.');">Info Motor</a>
     </header>
 
-    <div class="main-container">
+    <div class="main-container" id="containerMain">
         <div class="logo">FCG Search</div>
         <div class="subtitle">Search</div>
         
-        <!-- Formulario que procesa la búsqueda internamente con IA -->
-        <form class="search-form" id="searchForm" onsubmit="procesarConsulta(event)">
+        <form class="search-form" id="searchForm" onsubmit="ejecutarMotor(event)">
             <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22"><path fill="#bc13fe" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 10 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
-            <input type="text" id="searchInput" placeholder="Pregúntale lo que sea al buscador inteligente..." autofocus required autocomplete="off">
+            <input type="text" id="searchInput" placeholder="Escribe lo que quieras buscar (ej. raiz de 8, roblox, etc.)..." autofocus required autocomplete="off">
         </form>
 
         <div class="buttons">
-            <button type="button" onclick="ejecutarBusquedaIA()">Buscar con Inteligencia</button>
+            <button type="button" onclick="buscarClick()">Buscar en FCG</button>
             <button type="button" onclick="suerteGamer()">¡Modo Suerte!</button>
-        </div>
-
-        <div class="ai-response" id="aiBox">
-            <strong style="color: #bc13fe; font-size: 18px;">🤖 FCG AI Response:</strong><br><br>
-            <span id="aiText"></span>
         </div>
     </div>
 
+    <!-- Resultados que aparecen aquí mismo con IA y videos -->
+    <div class="results-section" id="resultsSection">
+        <div class="ai-card" id="aiCardContent">
+            <!-- Respuesta de la IA -->
+        </div>
+
+        <h3 style="color: #c77dff; margin-bottom: 12px;">📺 Videos relacionados</h3>
+        <div class="videos-container" id="videosContainerContent">
+            <!-- Videos simulados -->
+        </div>
+        
+        <button type="button" onclick="volverInicio()" style="background: #3c096c; border: 1px solid #bc13fe; color: #fff; padding: 8px 16px; border-radius: 6px; cursor: pointer; margin-top: 10px;">← Nueva Búsqueda</button>
+    </div>
+
     <footer>
-        ⚡ Creado por FGC &bull; Motor IA Inteligente Integrado ⚡
+        ⚡ Creado por FGC &bull; Motor de Navegación Interno Gamer ⚡
     </footer>
 
     <script>
-        function procesarConsulta(event) {
+        function ejecutarMotor(event) {
             event.preventDefault();
-            let query = document.getElementById('searchInput').value.trim().toLowerCase();
-            let respuesta = "";
+            let query = document.getElementById('searchInput').value.trim();
+            if(!query) return;
 
-            // Base de conocimientos inteligente integrada
-            if (query.includes("hola") || query.includes("saludos")) {
-                respuesta = "¡Hola, pro! Soy FCG Search AI, tu buscador inteligente personal. ¿Qué te gustaría aprender o consultar hoy?";
-            } 
-            else if (query.includes("raiz de 8") || query.includes("raíz de 8")) {
-                respuesta = "La raíz cuadrada de 8 (√8) es aproximadamente <strong>2.8284</strong> (ya que 2.8284 × 2.8284 = 8). ¡Exacto y matemático!";
-            }
-            else if (query.includes("quien eres") || query.includes("quién eres") || query.includes("que eres")) {
-                respuesta = "Soy <strong>FCG Search</strong>, un buscador y motor de inteligencia artificial avanzado creado por FGC para dar respuestas rápidas con un estilo gamer brutal.";
-            }
-            else if (query.includes("roblox") || query.includes("script")) {
-                respuesta = "¡El mundo de Roblox y Lua es genial! Puedes crear experiencias épicas usando Roblox Studio, programando scripts para gameplays y mecánicas de vehículos o tycoons.";
-            }
-            else if (query.includes("juegos") || query.includes("videojuegos")) {
-                respuesta = "Los videojuegos son arte y tecnología. Desde consolas retro hasta visores VR de última generación y mundos abiertos en Roblox.";
-            }
-            else if (query.includes("fcg") || query.includes("federico")) {
-                respuesta = "¡FGC son las iniciales del jefe y creador de este portal web! Un genio de la programación y los videojuegos.";
-            }
-            else {
-                // Respuesta dinámica inteligente para cualquier otra cosa que escriba
-                respuesta = "Has buscado: <em>\"" + document.getElementById('searchInput').value + "\"</em>.<br><br>Como buscador inteligente FCG, te informo que este tema abarca datos interesantes sobre tecnología, cultura general y entretenimiento. ¡Sigue probando con más preguntas para analizar más temas!";
+            // Subir un poco el diseño principal para dar espacio a los resultados
+            document.getElementById('containerMain').style.marginTop = "0vh";
+            document.getElementById('containerMain').style.display = "none";
+            
+            let resultsDiv = document.getElementById('resultsSection');
+            resultsDiv.style.display = "block";
+
+            // Generar respuesta de IA interna
+            let aiText = `<strong>🤖 FGC Search AI Analizó:</strong> "${query}"<br><br>`;
+            let qLower = query.toLowerCase();
+
+            if (qLower.includes("raiz de 8") || qLower.includes("raíz de 8")) {
+                aiText += "La raíz cuadrada de 8 (√8) es exactamente <strong>2.828427...</strong> Es un cálculo matemático exacto procesado por el motor interno de FCG.";
+            } else if (qLower.includes("roblox") || qLower.includes("juego")) {
+                aiText += "Tema detectado: <strong>Videojuegos y Roblox</strong>. Este sector incluye desarrollo con Lua, mapas personalizados, experiencias multijugador y servidores optimizados.";
+            } else if (qLower.includes("hola")) {
+                aiText += "¡Hola de nuevo, pro! Tu navegador FCG Search está funcionando al 100% y listo para procesar cualquier consulta que le pongas.";
+            } else {
+                aiText += `Información procesada sobre <strong>${query}</strong>: Este término contiene múltiples referencias tecnológicas, culturales y de entretenimiento que FCG Search recopila de forma inteligente para ti.`;
             }
 
-            mostrarRespuesta(respuesta);
+            document.getElementById('aiCardContent').innerHTML = aiText;
+
+            // Generar videos simulados relacionados
+            let videosHtml = `
+                <div class="video-card" onclick="alert('Reproduciendo video simulado de: ${query}')">
+                    <div class="video-thumb">▶️🎮</div>
+                    <div class="video-title">Guía definitiva y trucos de ${query}</div>
+                </div>
+                <div class="video-card" onclick="alert('Reproduciendo video simulado de: ${query}')">
+                    <div class="video-thumb">🎥🔥</div>
+                    <div class="video-title">Análisis completo en 4K sobre ${query}</div>
+                </div>
+                <div class="video-card" onclick="alert('Reproduciendo video simulado de: ${query}')">
+                    <div class="video-thumb">⚡🏆</div>
+                    <div class="video-title">Todo lo que debes saber de ${query} en 2026</div>
+                </div>
+            `;
+            document.getElementById('videosContainerContent').innerHTML = videosHtml;
         }
 
-        function ejecutarBusquedaIA() {
+        function buscarClick() {
             let fakeEvent = { preventDefault: function() {} };
-            procesarConsulta(fakeEvent);
+            ejecutarMotor(fakeEvent);
         }
 
-        function mostrarRespuesta(texto) {
-            let box = document.getElementById('aiBox');
-            let txt = document.getElementById('aiText');
-            txt.innerHTML = texto;
-            box.style.display = "block";
+        function volverInicio() {
+            document.getElementById('resultsSection').style.display = "none";
+            document.getElementById('containerMain').style.display = "flex";
+            document.getElementById('searchInput').value = "";
+            document.getElementById('searchInput').focus();
         }
 
         function suerteGamer() {
-            let easterEggs = [
-                "¡Has activado el Modo Dios de FCG Search! Rendimiento al 100% sin salir de la página. 🚀",
-                "¡Sorpresa! Tienes acceso ilimitado al buscador inteligente más rápido del universo gamer. ✨",
-                "¡Premio gordo! Los mejores buscadores tienen diseño morado neón. 🎮"
-            ];
-            let random = easterEggs[Math.floor(Math.random() * easterEggs.length)];
-            mostrarRespuesta(random);
+            document.getElementById('searchInput').value = "Modo Dios FCG";
+            ejecutarMotor({ preventDefault: function() {} });
         }
     </script>
 
