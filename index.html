@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FCG Search - Ultimate Omni Core</title>
+    <title>FCG Search - Gemini AI Engine</title>
     <style>
         body {
             margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0d0221, #190933, #2b1055);
-            color: #e0d4fc;
+            background: linear-gradient(135deg, #131314, #1e1f22, #2b2c30);
+            color: #e3e3e8;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -17,64 +17,75 @@
         }
         header {
             display: flex;
-            justify-content: flex-end;
-            padding: 20px;
-            gap: 20px;
-            font-size: 14px;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            font-size: 15px;
+        }
+        .header-title {
+            font-weight: bold;
+            color: #c4b5fd;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         header a {
-            color: #bc13fe;
+            color: #a855f7;
             text-decoration: none;
             font-weight: bold;
-            text-shadow: 0 0 8px rgba(188, 19, 254, 0.5);
         }
         header a:hover {
-            color: #f3e7ff;
+            color: #d8b4fe;
         }
         .main-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: -5vh;
+            margin-top: -8vh;
             padding: 0 20px;
         }
-        .logo {
-            font-size: 85px;
-            font-weight: 900;
-            letter-spacing: -2px;
-            font-family: 'Courier New', monospace;
-            color: #ffffff;
-            text-shadow: 0 0 20px #bc13fe, 0 0 40px #7b2cbf;
+        .gemini-logo {
+            font-size: 65px;
+            font-weight: 800;
+            background: linear-gradient(90deg, #9333ea, #ec4899, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: 'Segoe UI', sans-serif;
+            margin-bottom: 5px;
         }
         .subtitle {
-            font-size: 22px;
-            color: #c77dff;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            font-weight: bold;
-            text-shadow: 0 0 10px rgba(199, 125, 255, 0.6);
+            font-size: 18px;
+            color: #9ca3af;
+            margin-bottom: 35px;
+            font-weight: 500;
+            letter-spacing: 1px;
         }
         .search-box-container {
             display: flex;
             align-items: center;
-            width: 650px;
+            width: 700px;
             max-width: 100%;
-            height: 55px;
-            background-color: rgba(22, 10, 45, 0.9);
-            border: 2px solid #7b2cbf;
+            height: 56px;
+            background-color: #1e1f22;
+            border: 1px solid #4b5563;
             border-radius: 30px;
-            padding: 0 20px;
-            box-shadow: 0 0 25px rgba(123, 44, 191, 0.4);
+            padding: 0 22px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            transition: 0.3s;
+        }
+        .search-box-container:focus-within {
+            border-color: #a855f7;
+            box-shadow: 0 4px 25px rgba(168, 85, 247, 0.25);
         }
         .search-box-container input {
             flex: 1;
             border: none;
             outline: none;
-            font-size: 17px;
+            font-size: 16px;
             background: transparent;
             color: #ffffff;
-            margin-left: 10px;
+            margin-left: 12px;
         }
         .buttons {
             margin-top: 25px;
@@ -82,20 +93,20 @@
             gap: 15px;
         }
         .buttons button {
-            background: linear-gradient(45deg, #7b2cbf, #bc13fe);
+            background: linear-gradient(135deg, #7c3aed, #db2777);
             border: none;
-            border-radius: 8px;
+            border-radius: 25px;
             color: #ffffff;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: bold;
-            padding: 12px 22px;
+            padding: 12px 24px;
             cursor: pointer;
-            box-shadow: 0 0 15px rgba(188, 19, 254, 0.4);
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
             transition: 0.2s;
         }
         .buttons button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(188, 19, 254, 0.8);
+            transform: scale(1.03);
+            opacity: 0.95;
         }
         
         .results-section {
@@ -104,31 +115,35 @@
             max-width: 95%;
             margin: 20px auto;
             text-align: left;
-            animation: fadeIn 0.4s ease;
+            animation: fadeIn 0.3s ease;
         }
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
         .ai-card {
-            background: rgba(15, 5, 30, 0.95);
-            border: 2px solid #bc13fe;
-            border-radius: 12px;
-            padding: 20px;
+            background: #1e1f22;
+            border: 1px solid #374151;
+            border-radius: 16px;
+            padding: 24px;
             margin-bottom: 20px;
-            box-shadow: 0 0 25px rgba(188, 19, 254, 0.3);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.5);
             font-size: 16px;
-            line-height: 1.6;
+            line-height: 1.7;
+            color: #f3f4f6;
+        }
+        .ai-card strong {
+            color: #c084fc;
         }
         
         footer {
-            background-color: rgba(10, 3, 20, 0.9);
-            color: #9d4edd;
+            background-color: #111214;
+            color: #9ca3af;
             font-size: 13px;
             padding: 15px 30px;
-            border-top: 1px solid #3c096c;
+            border-top: 1px solid #27272a;
             text-align: center;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
             margin-top: 40px;
         }
     </style>
@@ -136,32 +151,33 @@
 <body>
 
     <header>
+        <div class="header-title">✨ FCG Gemini Core</div>
         <a href="https://github.com/federicogongora67-debug" target="_blank">GitHub Pro</a>
     </header>
 
     <div class="main-container" id="containerMain">
-        <div class="logo">FCG Search</div>
-        <div class="subtitle">WhatsApp Omni Core Plus</div>
+        <div class="gemini-logo">FCG</div>
+        <div class="subtitle">¿De qué te gustaría hablar hoy?</div>
         
         <div class="search-box-container">
-            <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22"><path fill="#bc13fe" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 10 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
-            <input type="text" id="searchInput" placeholder="Escribe tu consulta y presiona Enter..." autocomplete="off">
+            <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22"><path fill="#a855f7" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 10 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
+            <input type="text" id="searchInput" placeholder="Pregunta sobre matemáticas, Linux, geografía, comandos o cultura..." autocomplete="off">
         </div>
 
         <div class="buttons">
-            <button type="button" onclick="lanzarBusqueda()">Enviar Mensaje</button>
-            <button type="button" onclick="suerteGamer()">¡Modo Aleatorio!</button>
+            <button type="button" onclick="lanzarBusqueda()">Enviar Consulta</button>
+            <button type="button" onclick="suerteGamer()">¡Pregunta Aleatoria!</button>
         </div>
     </div>
 
     <div class="results-section" id="resultsSection">
         <div class="ai-card" id="aiCardContent"></div>
         
-        <button type="button" onclick="volverInicio()" style="background: #3c096c; border: 1px solid #bc13fe; color: #fff; padding: 10px 18px; border-radius: 6px; cursor: pointer; font-weight: bold;">← Escribir otro mensaje</button>
+        <button type="button" onclick="volverInicio()" style="background: #374151; border: 1px solid #4b5563; color: #fff; padding: 10px 18px; border-radius: 8px; cursor: pointer; font-weight: bold; transition: 0.2s;">← Nueva consulta</button>
     </div>
 
     <footer>
-        ⚡ FCG Chat &bull; Motor Científico, Matemático y Estadístico Extendido ⚡
+        ✨ FCG Gemini Core &bull; Inteligencia Universal y Sistemas Operativos
     </footer>
 
     <script>
@@ -187,32 +203,35 @@
             resultsDiv.style.display = "block";
 
             let qLower = query.toLowerCase();
-
-            const bancoEmociones = [
-                { emoji: "😎👊", tono: "¡Uf, claro que sí! Te lo explico directo y sin vueltas:" },
-                { emoji: "🔥🙌", tono: "¡Temazo total! Aquí tienes la respuesta precisa:" },
-                { emoji: "⚡😂", tono: "¡Jajaja, obvio pa! Anota este dato exacto:" },
-                { emoji: "🚀😎", tono: "¡Listo y al grano! Así viene la mano:" }
-            ];
-
-            let emocionElegida = bancoEmociones[Math.floor(Math.random() * bancoEmociones.length)];
             let nums = extraerNumeros(qLower);
             let respuestaCore = "";
 
-            // COMANDO INTEGRAL MASIVO (Matemáticas, Estadística, Química, Naturales y Vida Cotidiana)
+            // MOTOR UNIVERSAL EXTENDIDO: MATEMÁTICAS, GEOGRAFÍA, VIDA COTIDIANA, CULTURA Y SISTEMAS (LINUX/WINDOWS)
             if ((qLower.includes("raiz") || qLower.includes("raíz")) && nums.length > 0) {
                 let res = Math.sqrt(nums[0]);
                 respuestaCore = `La raíz cuadrada de ${nums[0]} es <strong>${res}</strong>.`;
             } else if ((qLower.includes("log") || qLower.includes("logaritmo")) && nums.length > 0) {
                 let log10 = Math.log10(nums[0]).toFixed(4);
                 let ln = Math.log(nums[0]).toFixed(4);
-                respuestaCore = `Log10 de ${nums[0]} es <strong>${log10}</strong> y el logaritmo natural (ln) es <strong>${ln}</strong>.`;
-            } else if ((qLower.includes("cuadrado") || qLower.includes("potencia")) && nums.length > 0) {
-                let res = Math.pow(nums[0], 2);
-                respuestaCore = `El cuadrado de ${nums[0]} es <strong>${res}</strong>.`;
-            } else if (qLower.includes("cubo") && nums.length > 0) {
-                let res = Math.pow(nums[0], 3);
-                respuestaCore = `El cubo de ${nums[0]} es <strong>${res}</strong>.`;
+                respuestaCore = `El logaritmo base 10 de ${nums[0]} es <strong>${log10}</strong> y el logaritmo natural es <strong>${ln}</strong>.`;
+            } else if (qLower.includes("afrolocombianidad") || qLower.includes("afrocolombianidad")) {
+                respuestaCore = `El <strong>Día de la Afrocolombianidad</strong> se conmemora cada <strong>21 de mayo</strong> en Colombia. Esta fecha celebra la abolición de la esclavitud en el país en el año 1851, reconociendo el aporte cultural, histórico y social de las comunidades negras, afrodescendientes, raizales y palenqueras.`;
+            } else if (qLower.includes("linux") || qLower.includes("ubuntu") || qLower.includes("debian") || qLower.includes("terminal") || qLower.includes("comando")) {
+                respuestaCore = `En sistemas operativos basados en Linux, los comandos esenciales de terminal incluyen: 
+                <br>• <code>ls</code>: Lista archivos y carpetas del directorio actual.
+                <br>• <code>cd</code>: Cambia de directorio o carpeta.
+                <br>• <code>sudo apt update && sudo apt upgrade</code>: Actualiza los paquetes del sistema (en distribuciones como Ubuntu o Debian).
+                <br>• <code>htop</code> o <code>top</code>: Monitorea el uso de CPU y memoria RAM en tiempo real.`;
+            } else if (qLower.includes("windows") || qLower.includes("cmd") || qLower.includes("powershell")) {
+                respuestaCore = `En sistemas Windows, los comandos de consola más útiles son:
+                <br>• <code>dir</code>: Muestra los archivos del directorio.
+                <br>• <code>ipconfig</code>: Consulta la configuración de red y dirección IP local.
+                <br>• <code>sfc /scannow</code>: Analiza y repara archivos dañados del sistema.
+                <br>• <code>taskmgr</code>: Abre directamente el Administrador de Tareas.`;
+            } else if (qLower.includes("vehiculo") || qLower.includes("auto") || qLower.includes("moto") || qLower.includes("transporte")) {
+                respuestaCore = `Los vehículos de transporte terrestre (como automóviles, motocicletas y camiones) funcionan mediante motores de combustión interna o sistemas eléctricos, optimizando la movilidad urbana y la logística comercial diaria.`;
+            } else if (qLower.includes("geografia") || qLower.includes("pais") || qLower.includes("capital") || qLower.includes("continente")) {
+                respuestaCore = `La geografía estudia las características físicas de la Tierra, los relieves, los climas y la organización de la población en continentes, países y ciudades principales de todo el globo terráqueo.`;
             } else if (qLower.includes("porcentaje") || qLower.includes("%")) {
                 if (nums.length >= 2) {
                     let res = (nums[0] * nums[1]) / 100;
@@ -224,60 +243,15 @@
                 if (nums.length > 0) {
                     let suma = nums.reduce((a, b) => a + b, 0);
                     let media = suma / nums.length;
-                    respuestaCore = `La media estadística (promedio) es <strong>${media.toFixed(2)}</strong>.`;
+                    respuestaCore = `La media estadística es <strong>${media.toFixed(2)}</strong>.`;
                 } else {
                     respuestaCore = "Ingresa los números separados para calcular la media estadística.";
                 }
-            } else if (qLower.includes("mediana")) {
-                if (nums.length > 0) {
-                    let ordenados = [...nums].sort((a, b) => a - b);
-                    let mitad = Math.floor(ordenados.length / 2);
-                    let mediana = ordenados.length % 2 !== 0 ? ordenados[mitad] : (ordenados[mitad - 1] + ordenados[mitad]) / 2;
-                    respuestaCore = `La mediana estadística es <strong>${mediana}</strong>.`;
-                } else {
-                    respuestaCore = "Ingresa los números para calcular la mediana.";
-                }
-            } else if (qLower.includes("moda")) {
-                if (nums.length > 0) {
-                    let conteo = {};
-                    let maxFrecuencia = 0;
-                    let moda = [];
-                    nums.forEach(n => {
-                        conteo[n] = (conteo[n] || 0) + 1;
-                        if (conteo[n] > maxFrecuencia) {
-                            maxFrecuencia = conteo[n];
-                            moda = [n];
-                        } else if (conteo[n] === maxFrecuencia && !moda.includes(n)) {
-                            moda.push(n);
-                        }
-                    });
-                    respuestaCore = `La moda estadística es <strong>${moda.join(', ')}</strong>.`;
-                } else {
-                    respuestaCore = "Ingresa los datos numéricos para calcular la moda.";
-                }
-            } else if (qLower.includes("ph") || qLower.includes("acidez")) {
-                respuestaCore = "El pH mide la concentración de iones de hidrógeno. Va de 0 a 14: menor a 7 es ácido, 7 es neutro y mayor a 7 es básico o alcalino.";
-            } else if (qLower.includes("tabla periodica") || qLower.includes("elemento") || qLower.includes("quimica")) {
-                respuestaCore = "La química estudia la materia, sus propiedades y reacciones. Los elementos en la tabla periódica se organizan por su número atómico y propiedades.";
-            } else if (qLower.includes("fotosintesis") || qLower.includes("plantas") || qLower.includes("naturales")) {
-                respuestaCore = "La fotosíntesis es el proceso bioquímico donde las plantas convierten luz solar, agua y dióxido de carbono en glucosa y oxígeno.";
-            } else if (qLower.includes("celula") || qLower.includes("biologia")) {
-                respuestaCore = "La célula es la unidad estructural y funcional básica de todos los seres vivos, pudiendo ser procariota o eucariota.";
-            } else if (qLower.includes("gravedad") || qLower.includes("fisica") || qLower.includes("velocidad")) {
-                respuestaCore = "En física, la aceleración de la gravedad estándar en la Tierra es de aproximadamente 9.81 metros por segundo al cuadrado.";
-            } else if (qLower.includes("roblox") || qLower.includes("lua") || qLower.includes("studio")) {
-                respuestaCore = "En Roblox se utiliza el lenguaje <strong>Lua</strong> en Roblox Studio para programar sistemas, scripts y mecánicas de juego.";
-            } else if (qLower.includes("programacion") || qLower.includes("codigo") || qLower.includes("javascript") || qLower.includes("html")) {
-                respuestaCore = "Programar es estructurar instrucciones lógicas mediante lenguajes como HTML, CSS o JavaScript para computadoras y web.";
-            } else if (qLower.includes("moto") || qLower.includes("110cc") || qLower.includes("motor")) {
-                respuestaCore = "Una moto de 110cc es ligera, económica y ofrece un rendimiento de combustible ideal para traslados urbanos diarios.";
             } else {
-                respuestaCore = `Consulta procesada con éxito: <strong>${query}</strong> abarca conceptos clave de ciencias, matemáticas y aplicación práctica general.`;
+                respuestaCore = `Consulta procesada: <strong>${query}</strong> abarca principios fundamentales de matemáticas, sistemas operativos, cultura general y aplicaciones prácticas del entorno actual.`;
             }
 
-            let respuestaFinal = `<strong>chat FCG:</strong> ${emocionElegida.emoji} ${emocionElegida.tono}<br><br>${respuestaCore}`;
-
-            document.getElementById('aiCardContent').innerHTML = respuestaFinal;
+            document.getElementById('aiCardContent').innerHTML = respuestaCore;
         }
 
         function volverInicio() {
@@ -288,7 +262,7 @@
         }
 
         function suerteGamer() {
-            document.getElementById('searchInput').value = "media de 10 20 30 40 50";
+            document.getElementById('searchInput').value = "Día de la Afrocolombianidad";
             lanzarBusqueda();
         }
     </script>
