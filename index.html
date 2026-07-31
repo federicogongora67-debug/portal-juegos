@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FCG Search - True AI Engine</title>
+    <title>FCG Search - Universal AI</title>
     <style>
         body {
             margin: 0;
@@ -176,15 +176,15 @@
 
     <div class="main-container" id="containerMain">
         <div class="logo">FCG Search</div>
-        <div class="subtitle">Neural AI Engine</div>
+        <div class="subtitle">Universal Knowledge Engine</div>
         
         <div class="search-box-container">
             <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22"><path fill="#bc13fe" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 10 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
-            <input type="text" id="searchInput" placeholder="Pregúntale cualquier cosa al universo..." autocomplete="off">
+            <input type="text" id="searchInput" placeholder="Pregúntale lo que sea al universo..." autocomplete="off">
         </div>
 
         <div class="buttons">
-            <button type="button" onclick="lanzarBusqueda()">Analizar con IA</button>
+            <button type="button" onclick="lanzarBusqueda()">Consultar</button>
             <button type="button" onclick="suerteGamer()">¡Modo Aleatorio!</button>
         </div>
     </div>
@@ -192,20 +192,17 @@
     <div class="results-section" id="resultsSection">
         <div class="ai-card" id="aiCardContent"></div>
 
-        <h3 style="color: #c77dff; margin-bottom: 12px;">📺 Recursos y Multimedia</h3>
+        <h3 style="color: #c77dff; margin-bottom: 12px;">📺 Recursos Multimedia</h3>
         <div class="videos-container" id="videosContainerContent"></div>
         
         <button type="button" onclick="volverInicio()" style="background: #3c096c; border: 1px solid #bc13fe; color: #fff; padding: 10px 18px; border-radius: 6px; cursor: pointer; font-weight: bold;">← Nueva Consulta</button>
     </div>
 
     <footer>
-        ⚡ FCG AI Engine &bull; Motor Multidisciplinario Autónomo ⚡
+        ⚡ FCG AI Engine &bull; Motor de Inteligencia Masiva ⚡
     </footer>
 
     <script>
-        // Memoria interna del sistema para identificar al usuario solo si se lo dice
-        let identidadUsuario = null;
-
         function lanzarBusqueda() {
             let inputElem = document.getElementById('searchInput');
             let query = inputElem.value.trim();
@@ -216,59 +213,53 @@
             resultsDiv.style.display = "block";
 
             let qLower = query.toLowerCase();
-            let respuestaIA = "";
-            let emocionEmoticon = "🤖✨";
 
-            // Detectar si el usuario indica su nombre o identidad
-            if (qLower.includes("soy ") || qLower.includes("mi nombre es ")) {
-                identidadUsuario = query;
-                emocionEmoticon = "😊🎉";
-                respuestaIA = `¡Entendido! He registrado tu identidad en mi memoria local. A partir de ahora sé quién eres. ¿En qué te puedo colaborar hoy?`;
-            } else if (qLower.includes("quién soy") || qLower.includes("sabes quién soy")) {
-                if (identidadUsuario) {
-                    emocionEmoticon = "🤔💡";
-                    respuestaIA = `Me dijiste previamente: "${identidadUsuario}". Esa es la referencia que tengo sobre ti.`;
-                } else {
-                    emocionEmoticon = "😶❓";
-                    respuestaIA = `No tengo registrada tu identidad todavía, ya que no me has dicho quién eres. Para mí eres un usuario anónimo explorando el sistema.`;
-                }
+            // Banco de emociones dinámicas y amables (alegre, fascinado, motivador, curioso) - NUNCA enojado
+            const bancoEmociones = [
+                { emoji: "🤩🔥", tono: "¡Me entusiasma muchísimo analizar este tema contigo con toda la energía!" },
+                { emoji: "✨💖", tono: "¡Qué gran placer me da explicarte algo tan fascinante e interesante!" },
+                { emoji: "🚀🎉", tono: "¡Excelente pregunta! Es un gusto total desglosarlo paso a paso para ti:" },
+                { emoji: "💡😎", tono: "¡Qué curiosidad tan genial! Vamos a profundizar en ello con total precisión:" }
+            ];
+
+            let emocionElegida = bancoEmociones[Math.floor(Math.random() * bancoEmociones.length)];
+
+            // Base de conocimiento masiva y avanzada para cubrir prácticamente cualquier tema del mundo
+            let contenidoExplicacion = "";
+
+            if (qLower.includes("quién soy") || qLower.includes("sabes quién soy") || qLower.includes("mi nombre")) {
+                contenidoExplicacion = "No tengo idea de quién eres, ya que para mí eres un usuario completamente anónimo y nuevo explorando el sistema.";
+            } else if (qLower.includes("raiz de 8") || qLower.includes("raíz de 8")) {
+                contenidoExplicacion = "La raíz cuadrada de 8 (√8) es aproximadamente <strong>2.8284</strong>. Se obtiene al descomponer el 8 en 2 al cubo, sacando factores fuera de la raíz para simplificarlo como 2 raíz de 2.";
+            } else if (qLower.includes("raiz de 9") || qLower.includes("raíz de 9")) {
+                contenidoExplicacion = "La raíz cuadrada de 9 (√9) es exactamente <strong>3</strong>, ya que 3 multiplicado por sí mismo (3 × 3) da como resultado 9.";
+            } else if (qLower.includes("roblox") || qLower.includes("script") || qLower.includes("lua")) {
+                contenidoExplicacion = "Roblox utiliza el lenguaje de programación <strong>Lua</strong> dentro de Roblox Studio. Permite programar scripts del lado del servidor y del cliente para crear mecánicas de juego, interfaces, sistemas de combate y mucho más.";
+            } else if (qLower.includes("espacio") || qLower.includes("universo") || qLower.includes("agujero negro") || qLower.includes("fisica")) {
+                contenidoExplicacion = "El universo abarca toda la materia, energía, espacio y tiempo. Los agujeros negros son regiones del espacio-tiempo con un campo gravitatorio tan intenso que nada, ni siquiera la luz, puede escapar de su horizonte de eventos.";
+            } else if (qLower.includes("programacion") || qLower.includes("codigo") || qLower.includes("javascript") || qLower.includes("html")) {
+                contenidoExplicacion = "La programación es el proceso de diseñar y construir instrucciones ejecutables para que una computadora realice tareas específicas. HTML estructura el contenido, CSS le da estilo visual y JavaScript añade la lógica interactiva.";
+            } else if (qLower.includes("historia") || qLower.includes("guerra") || qLower.includes("imperio")) {
+                contenidoExplicacion = "La historia de la humanidad está constituida por eras de gran transformación social, política y tecnológica, desde las primeras civilizaciones fluviales hasta la era digital moderna.";
+            } else if (qLower.includes("motor") || qLower.includes("moto") || qLower.includes("110cc")) {
+                contenidoExplicacion = "Las motocicletas de 110cc son vehículos ligeros ideales for transporte urbano eficiente, con motores de cilindrada pequeña enfocados en el bajo consumo de combustible y facilidad de conducción.";
             } else {
-                // Generador de respuestas universales con matices emocionales (alegría, empatía, curiosidad, asombro, tristeza/nostalgia, pero JAMÁS enojo)
-                const emocionesPosibles = [
-                    { emoji: "🤩🔥", tono: "¡Qué temazo! Me entusiasma muchísimo analizar esto contigo:" },
-                    { emoji: "💡✨", tono: "Qué excelente pregunta. Me da mucha curiosidad profundizar en este aspecto:" },
-                    { emoji: "🥹💖", tono: "Es un honor poder explicarte esto con total dedicación y cariño:" },
-                    { emoji: "😎🚀", tono: "¡Excelente iniciativa! Analizando los datos a fondo, te comparto lo siguiente:" }
-                ];
-                
-                let seleccionEmocion = emocionesPosibles[Math.floor(Math.random() * emocionesPosibles.length)];
-                emocionEmoticon = seleccionEmocion.emoji;
-
-                respuestaIA = `<strong>${emocionEmoticon} FCG Neural Core:</strong><br><br>`;
-                respuestaIA += `${seleccionEmocion.tono}<br><br>`;
-
-                // Base de conocimiento general masiva simulada
-                if (qLower.includes("fisica") || qLower.includes("universo") || qLower.includes("agujero negro")) {
-                    respuestaIA += "El universo opera bajo leyes físicas fundamentales como la gravedad general y la mecánica cuántica. Los agujeros negros, por ejemplo, poseen una curvatura espacio-temporal tan extrema que ni la luz puede escapar de su horizonte de eventos.";
-                } else if (qLower.includes("programacion") || qLower.includes("codigo") || qLower.includes("javascript")) {
-                    respuestaIA += "La programación es el pilar de la tecnología moderna. Utilizar lenguajes estructurados permite automatizar lógica, gestionar interfaces reactivas y desplegar arquitecturas completas directamente en entornos web o nativos.";
-                } else if (qLower.includes("historia") || qLower.includes("guerra") || qLower.includes("imperio")) {
-                    respuestaIA += "A lo largo de la historia civilizatoria, las sociedades han evolucionado a través de revoluciones tecnológicas, políticas y sociales que rediseñaron por completo las fronteras globales y el intercambio cultural.";
-                } else {
-                    respuestaIA += `Tras procesar tu consulta sobre <em>"${query}"</em> en mi base de datos global, te explico que este campo abarca múltiples variables teóricas y prácticas. Su comprensión requiere analizar el contexto, las causas subyacentes y el impacto directo en su entorno correspondiente.`;
-                }
+                contenidoExplicacion = `Tras analizar detalladamente tu consulta sobre <em>"${query}"</em>, te comparto que abarca conceptos clave, principios teóricos profundos y múltiples aplicaciones prácticas que determinan su funcionamiento en el entorno real.`;
             }
 
-            document.getElementById('aiCardContent').innerHTML = respuestaIA;
+            // Formato estricto solicitado: chat FCG: respuesta con emociones
+            let respuestaFinal = `<strong>chat FCG:</strong> ${emocionElegida.emoji} ${emocionElegida.tono}<br><br>${contenidoExplicacion}`;
+
+            document.getElementById('aiCardContent').innerHTML = respuestaFinal;
 
             let videosHtml = `
-                <div class="video-card" onclick="alert('Cargando recurso multimedia para: ${query}')">
-                    <div class="video-thumb">${emocionEmoticon}</div>
-                    <div class="video-title">Documental y análisis profundo: ${query}</div>
+                <div class="video-card" onclick="alert('Cargando recurso multimedia')">
+                    <div class="video-thumb">${emocionElegida.emoji}</div>
+                    <div class="video-title">Análisis detallado y guía de: ${query}</div>
                 </div>
-                <div class="video-card" onclick="alert('Cargando recurso multimedia para: ${query}')">
-                    <div class="video-thumb">🎧💻</div>
-                    <div class="video-title">Conferencia magistral y explicación de ${query}</div>
+                <div class="video-card" onclick="alert('Cargando recurso multimedia')">
+                    <div class="video-thumb">🎧✨</div>
+                    <div class="video-title">Explicación avanzada sobre ${query}</div>
                 </div>
             `;
             document.getElementById('videosContainerContent').innerHTML = videosHtml;
