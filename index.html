@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FCG Search - Ultimate Neural Engine</title>
+    <title>FCG Search - Math Pro Edition</title>
     <style>
         body {
             margin: 0;
@@ -120,41 +120,6 @@
             font-size: 16px;
             line-height: 1.6;
         }
-        .videos-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-        .video-card {
-            background: rgba(22, 10, 45, 0.9);
-            border: 1px solid #7b2cbf;
-            border-radius: 8px;
-            padding: 12px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .video-card:hover {
-            border-color: #bc13fe;
-            transform: translateY(-3px);
-            box-shadow: 0 0 15px rgba(188, 19, 254, 0.4);
-        }
-        .video-thumb {
-            width: 100%;
-            height: 100px;
-            background: #2b1055;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 26px;
-            margin-bottom: 8px;
-        }
-        .video-title {
-            font-size: 13px;
-            font-weight: bold;
-            color: #f3e7ff;
-        }
         
         footer {
             background-color: rgba(10, 3, 20, 0.9);
@@ -176,38 +141,33 @@
 
     <div class="main-container" id="containerMain">
         <div class="logo">FCG Search</div>
-        <div class="subtitle">Neural Memory Core</div>
+        <div class="subtitle">WhatsApp Math Core</div>
         
         <div class="search-box-container">
             <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22"><path fill="#bc13fe" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 10 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
-            <!-- AHORA ESCUCHA LA TECLA ENTER PERFECTAMENTE -->
-            <input type="text" id="searchInput" placeholder="Escribe tu pregunta y presiona Enter..." autocomplete="off">
+            <input type="text" id="searchInput" placeholder="Escribe tu mensaje o cálculo y presiona Enter..." autocomplete="off">
         </div>
 
         <div class="buttons">
-            <button type="button" onclick="lanzarBusqueda()">Consultar</button>
+            <button type="button" onclick="lanzarBusqueda()">Enviar Mensaje</button>
             <button type="button" onclick="suerteGamer()">¡Modo Aleatorio!</button>
         </div>
     </div>
 
     <div class="results-section" id="resultsSection">
         <div class="ai-card" id="aiCardContent"></div>
-
-        <h3 style="color: #c77dff; margin-bottom: 12px;">📺 Recursos Multimedia</h3>
-        <div class="videos-container" id="videosContainerContent"></div>
         
-        <button type="button" onclick="volverInicio()" style="background: #3c096c; border: 1px solid #bc13fe; color: #fff; padding: 10px 18px; border-radius: 6px; cursor: pointer; font-weight: bold;">← Nueva Consulta</button>
+        <button type="button" onclick="volverInicio()" style="background: #3c096c; border: 1px solid #bc13fe; color: #fff; padding: 10px 18px; border-radius: 6px; cursor: pointer; font-weight: bold;">← Escribir otro mensaje</button>
     </div>
 
     <footer>
-        ⚡ FCG AI Engine &bull; Con Base de Datos Masiva y Enter Habilitado ⚡
+        ⚡ FCG Chat &bull; Con Matemáticas y Motor Total ⚡
     </footer>
 
     <script>
-        // Evento para enviar automáticamente al presionar la tecla Enter
         document.getElementById('searchInput').addEventListener('keydown', function(event) {
             if (event.key === 'Enter') {
-                event.preventDefault(); // Evita que el navegador intente ir a Google
+                event.preventDefault();
                 lanzarBusqueda();
             }
         });
@@ -223,57 +183,53 @@
 
             let qLower = query.toLowerCase();
 
-            // Banco de emociones dinámicas y amables (alegre, fascinado, motivador, curioso) - NUNCA enojado
             const bancoEmociones = [
-                { emoji: "🤩🔥", tono: "¡Me entusiasma muchísimo analizar este tema contigo con toda la energía!" },
-                { emoji: "✨💖", tono: "¡Qué gran placer me da explicarte algo tan fascinante e interesante!" },
-                { emoji: "🚀🎉", tono: "¡Excelente pregunta! Es un gusto total desglosarlo paso a paso para ti:" },
-                { emoji: "💡😎", tono: "¡Qué curiosidad tan genial! Vamos a profundizar en ello con total precisión:" }
+                { emoji: "😎👊", tono: "¡Uf, claro que sí! Mira, analizando eso te cuento lo siguiente:" },
+                { emoji: "🔥🙌", tono: "¡Es una pasada ese tema! Te explico al detalle cómo viene la mano:" },
+                { emoji: "⚡😂", tono: "¡Jajaja, temazo trajiste! Anótate esta info que te tiro:" },
+                { emoji: "🚀😎", tono: "¡Obvio, pa! Te lo resumo rapidito y bien explicado:" }
             ];
 
             let emocionElegida = bancoEmociones[Math.floor(Math.random() * bancoEmociones.length)];
-
-            // Base de conocimiento masiva simulada con todo tipo de temas técnicos, matemáticos, de juegos y cultura general
             let contenidoExplicacion = "";
 
-            if (qLower.includes("quién soy") || qLower.includes("sabes quién soy") || qLower.includes("mi nombre")) {
-                contenidoExplicacion = "No tengo idea de quién eres, ya que para mí eres un usuario completamente anónimo y desconocido explorando el sistema.";
-            } else if (qLower.includes("raiz de 8") || qLower.includes("raíz de 8")) {
-                contenidoExplicacion = "La raíz cuadrada de 8 (√8) es aproximadamente <strong>2.8284</strong>. Se obtiene descomponiendo el 8 para simplificarlo matemáticamente como 2 multiplicado por la raíz cuadrada de 2.";
-            } else if (qLower.includes("raiz de 9") || qLower.includes("raíz de 9")) {
-                contenidoExplicacion = "La raíz cuadrada de 9 (√9) es exactamente <strong>3</strong>, ya que al multiplicar 3 por 3 obtenemos 9.";
+            // MOTOR MATEMÁTICO AUTOMÁTICO PARA RAÍCES Y LOGARITMOS UNIVERSALES
+            if (qLower.includes("raiz") || qLower.includes("raíz")) {
+                let match = query.match(/(\d+(\.\d+)?)/);
+                if (match) {
+                    let num = parseFloat(match[0]);
+                    let resultado = Math.sqrt(num);
+                    contenidoExplicacion = `Calculando la raíz cuadrada de ${num}: da exactamente <strong>${resultado}</strong>. ¡Facilísimo, bro!`;
+                } else {
+                    contenidoExplicacion = "Para sacar una raíz cuadrada, pásame el número exacto, por ejemplo: 'raíz de 25' o 'raiz de 50' y te lo calculo al toque.";
+                }
+            } else if (qLower.includes("log") || qLower.includes("logaritmo")) {
+                let match = query.match(/(\d+(\.\d+)?)/);
+                if (match) {
+                    let num = parseFloat(match[0]);
+                    let resultadoLog10 = Math.log10(num).toFixed(4);
+                    let resultadoLn = Math.log(num).toFixed(4);
+                    contenidoExplicacion = `El logaritmo base 10 de ${num} es <strong>${resultadoLog10}</strong> y el logaritmo natural (ln) es <strong>${resultadoLn}</strong>. ¡Todo calculado de una!`;
+                } else {
+                    contenidoExplicacion = "Para calcular logaritmos, dime el número, por ejemplo: 'log de 100' y te tiro el resultado de una vez.";
+                }
+            } else if (qLower.includes("quién soy") || qLower.includes("sabes quién soy") || qLower.includes("mi nombre")) {
+                contenidoExplicacion = "Ni idea, bro, para mí eres un usuario totalmente anónimo porque no me has dicho tu nombre ni te conozco de antes.";
             } else if (qLower.includes("roblox") || qLower.includes("script") || qLower.includes("lua") || qLower.includes("studio")) {
-                contenidoExplicacion = "Roblox utiliza el lenguaje de programación <strong>Lua</strong> dentro de Roblox Studio. Permite programar scripts tanto en el servidor como en el cliente para crear mecánicas de juego, interfaces dinámicas y sistemas avanzados.";
-            } else if (qLower.includes("espacio") || qLower.includes("universo") || qLower.includes("agujero negro") || qLower.includes("fisica") || qLower.includes("gravedad")) {
-                contenidoExplicacion = "El universo comprende todo el espacio, la materia y la energía. Los agujeros negros son regiones del espacio-tiempo con una gravedad tan descomunal que ni siquiera la luz puede escapar de su horizonte de eventos.";
-            } else if (qLower.includes("programacion") || qLower.includes("codigo") || qLower.includes("javascript") || qLower.includes("html") || qLower.includes("css")) {
-                contenidoExplicacion = "La programación es el proceso de crear instrucciones lógicas para que una computadora ejecute tareas. HTML estructura la página, CSS diseña la interfaz visual y JavaScript controla la interactividad y los eventos.";
-            } else if (qLower.includes("historia") || qLower.includes("guerra") || qLower.includes("imperio") || qLower.includes("civilizacion")) {
-                contenidoExplicacion = "La historia humana está marcada por eras de gran transformación social, política y tecnológica, desde las primeras civilizaciones fluviales y el imperio romano hasta la revolución digital moderna.";
-            } else if (qLower.includes("motor") || qLower.includes("moto") || qLower.includes("110cc") || qLower.includes("vehiculo")) {
-                contenidoExplicacion = "Las motocicletas de 110cc son vehículos ligeros y urbanos, ideales para trayectos diarios gracias a su consumo sumamente reducido de combustible y su facilidad de manejo.";
-            } else if (qLower.includes("vr") || qLower.includes("realidad virtual") || qLower.includes("visor") || qLower.includes("gafas")) {
-                contenidoExplicacion = "La realidad virtual (VR) sumerge al usuario en entornos digitales tridimensionales mediante visores especializados que rastrean el movimiento para ofrecer una experiencia totalmente inmersiva.";
+                contenidoExplicacion = "Ahí se usa <strong>Lua</strong> en el Roblox Studio. Con eso armas los scripts de los servers y los clientes para programar todas las mecánicas, interfaces y sistemas del juego.";
+            } else if (qLower.includes("espacio") || qLower.includes("universo") || qLower.includes("agujero negro") || qLower.includes("fisica")) {
+                contenidoExplicacion = "El universo es gigante. Los agujeros negros tienen una gravedad tan brutal que ni la luz puede escapar de lo hondo que están.";
+            } else if (qLower.includes("programacion") || qLower.includes("codigo") || qLower.includes("javascript") || qLower.includes("html")) {
+                contenidoExplicacion = "Programar es tirarle instrucciones a la compu para que haga lo que quieras. HTML arma la estructura, CSS le da los colores chulos y JS pone toda la lógica interactiva.";
+            } else if (qLower.includes("motor") || qLower.includes("moto") || qLower.includes("110cc")) {
+                contenidoExplicacion = "Una moto de 110cc es ligera, traga re poquita gasolina y te sirve perfecto para moverte por la ciudad sin gastar casi nada.";
             } else {
-                contenidoExplicacion = `Analizando detalladamente tu consulta sobre <em>"${query}"</em>, te comparto que abarca conceptos clave, principios teóricos profundos y múltiples aplicaciones prácticas que determinan su funcionamiento en el entorno real.`;
+                contenidoExplicacion = `Estuve chequeando lo que me pusiste sobre <em>"${query}"</em> y la verdad abarca un montón de cosas interesantes, conceptos clave y detalles técnicos que hacen que funcione a la perfección.`;
             }
 
-            // Formato exacto solicitado con "chat FCG:" y sus emociones integradas
             let respuestaFinal = `<strong>chat FCG:</strong> ${emocionElegida.emoji} ${emocionElegida.tono}<br><br>${contenidoExplicacion}`;
 
             document.getElementById('aiCardContent').innerHTML = respuestaFinal;
-
-            let videosHtml = `
-                <div class="video-card" onclick="alert('Cargando recurso multimedia')">
-                    <div class="video-thumb">${emocionElegida.emoji}</div>
-                    <div class="video-title">Análisis detallado y guía de: ${query}</div>
-                </div>
-                <div class="video-card" onclick="alert('Cargando recurso multimedia')">
-                    <div class="video-thumb">🎧✨</div>
-                    <div class="video-title">Explicación avanzada sobre ${query}</div>
-                </div>
-            `;
-            document.getElementById('videosContainerContent').innerHTML = videosHtml;
         }
 
         function volverInicio() {
@@ -284,7 +240,7 @@
         }
 
         function suerteGamer() {
-            document.getElementById('searchInput').value = "¿Cómo funciona la inteligencia artificial avanzada?";
+            document.getElementById('searchInput').value = "raíz cuadrada de 144";
             lanzarBusqueda();
         }
     </script>
