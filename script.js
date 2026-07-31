@@ -6,14 +6,13 @@ const chat=document.getElementById("chat");
 function sendMessage(){
 
 
-let text=input.value.trim();
+let pregunta=input.value.trim();
 
 
-if(text==="") return;
+if(pregunta==="") return;
 
 
-
-addMessage("Tú",text,"user");
+addMessage("Tú",pregunta,"user");
 
 
 input.value="";
@@ -22,14 +21,14 @@ input.value="";
 
 setTimeout(()=>{
 
+addMessage(
+"FGC AI",
+respuestaFGC(pregunta),
+"bot"
+);
 
-let answer=FGC(text);
 
-
-addMessage("FGC AI",answer,"bot");
-
-
-},600);
+},500);
 
 
 }
@@ -37,17 +36,16 @@ addMessage("FGC AI",answer,"bot");
 
 
 
-
-function addMessage(name,text,type){
+function addMessage(nombre,texto,tipo){
 
 
 let div=document.createElement("div");
 
+div.className="message "+tipo;
 
-div.className="message "+type;
 
-
-div.innerHTML="<b>"+name+":</b><br>"+text;
+div.innerHTML=
+"<b>"+nombre+"</b><br>"+texto;
 
 
 chat.appendChild(div);
@@ -62,27 +60,22 @@ chat.scrollTop=chat.scrollHeight;
 
 
 
+function respuestaFGC(p){
 
-function FGC(question){
 
-
-let q=question.toLowerCase();
-
+let q=p.toLowerCase();
 
 
 
-// SALUDOS
+// CONVERSACIÓN
 
 
-if(q.includes("hola") || q.includes("hello") || q.includes("hi")){
+if(q.includes("hola") || q.includes("oye")){
 
-return "Hola. Soy FGC AI 4.0. ¿Qué necesitas?";
+return "Dime. ¿Qué necesitas?";
 
 }
 
-
-
-// CONVERSACION
 
 
 if(q.includes("gracias")){
@@ -93,49 +86,13 @@ return "De nada. Estoy disponible si necesitas ayuda.";
 
 
 
-if(q.includes("triste") || q.includes("mal")){
 
-return "Siento que estés pasando por eso. Si quieres puedes contarme qué ocurre.";
-
-}
+// IDIOMAS
 
 
-
-
-// INGLES
-
-
-if(q.includes("hello")){
+if(q.includes("hello") || q.includes("hi")){
 
 return "Hello. How can I help you?";
-
-}
-
-
-
-if(q.includes("how are you")){
-
-return "I'm fine. Thank you for asking.";
-
-}
-
-
-
-if(q.includes("thank you")){
-
-return "Thank you significa gracias.";
-
-}
-
-
-
-
-// PORTUGUES
-
-
-if(q.includes("olá") || q.includes("ola")){
-
-return "Olá. Como posso ajudar você?";
 
 }
 
@@ -149,36 +106,27 @@ return "Obrigado significa gracias en portugués.";
 
 
 
-
-// TRADUCCION
-
-
-if(q.includes("computer")){
-
-return "Computer = Computador.";
-
-}
+// TRADUCTOR
 
 
+if(q.includes("hola en ingles")){
 
-if(q.includes("keyboard")){
-
-return "Keyboard = Teclado.";
+return "Hola en inglés es: Hello.";
 
 }
 
 
 
-if(q.includes("friend")){
+if(q.includes("gracias en ingles")){
 
-return "Friend = Amigo.";
+return "Gracias en inglés es: Thank you.";
 
 }
 
 
 
 
-// INFORMATICA
+// SISTEMAS
 
 
 if(q.includes("windows")){
@@ -191,7 +139,91 @@ return "Windows es un sistema operativo creado por Microsoft.";
 
 if(q.includes("linux")){
 
-return "Linux es un sistema operativo libre y de código abierto.";
+return "Linux es un sistema operativo de código abierto.";
+
+}
+
+
+
+
+// COMANDOS
+
+
+if(q.includes("ver ip")){
+
+return `
+Comando Windows:<br><br>
+
+<code>ipconfig</code>
+
+<br><br>
+
+Linux:
+
+<br>
+
+<code>ip a</code>
+`;
+
+}
+
+
+
+if(q.includes("actualizar linux")){
+
+return `
+Comando:
+
+<br><br>
+
+<code>
+sudo apt update && sudo apt upgrade
+</code>
+`;
+
+}
+
+
+
+
+if(q.includes("crear carpeta")){
+
+return `
+Windows:
+
+<br>
+<code>mkdir nombre</code>
+
+<br><br>
+
+Linux:
+
+<br>
+
+<code>mkdir nombre</code>
+`;
+
+}
+
+
+
+
+// PROGRAMACIÓN
+
+
+if(q.includes("html")){
+
+return `
+HTML crea páginas web.
+
+Ejemplo:
+
+<br><br>
+
+<code>
+&lt;h1&gt;Hola Mundo&lt;/h1&gt;
+</code>
+`;
 
 }
 
@@ -199,18 +231,30 @@ return "Linux es un sistema operativo libre y de código abierto.";
 
 if(q.includes("javascript")){
 
-return "JavaScript es un lenguaje usado para crear páginas web interactivas.";
+return "JavaScript agrega funciones e interacción a páginas web.";
 
 }
 
 
 
-if(q.includes("html")){
 
-return "HTML crea la estructura de una página web.";
+
+// JUEGOS
+
+
+if(q.includes("minecraft")){
+
+return "Minecraft es un juego de construcción y supervivencia con bloques.";
 
 }
 
+
+
+if(q.includes("fps")){
+
+return "Para mejorar FPS: baja gráficos, actualiza drivers y cierra programas innecesarios.";
+
+}
 
 
 
@@ -220,7 +264,7 @@ return "HTML crea la estructura de una página web.";
 
 if(q.includes("matematica")){
 
-return "Puedo ayudarte con matemáticas y explicar procedimientos paso a paso.";
+return "Puedo ayudarte con matemáticas explicando el procedimiento paso a paso.";
 
 }
 
@@ -234,34 +278,8 @@ return "Puedo ayudarte con inglés, traducciones y gramática.";
 
 
 
-if(q.includes("castellano")){
 
-return "Puedo ayudarte con literatura, ortografía y escritura.";
-
-}
-
-
-
-if(q.includes("fisica")){
-
-return "La física estudia la materia, energía y movimiento.";
-
-}
-
-
-
-if(q.includes("quimica")){
-
-return "La química estudia la materia y sus transformaciones.";
-
-}
-
-
-
-
-
-return "Oh no, esa pregunta todavía no la sé. ¿Me la puedes explicar para aprender más sobre el tema?";
-
+return "Estoy analizando tu pregunta. Todavía estoy aprendiendo, pero puedo ayudarte si me das más contexto.";
 
 }
 
@@ -270,8 +288,8 @@ return "Oh no, esa pregunta todavía no la sé. ¿Me la puedes explicar para apr
 
 
 
-// ENTER ENVIA
-// SHIFT + ENTER HACE SALTO DE LINEA
+// ENTER ENVÍA
+// SHIFT + ENTER SALTO
 
 
 input.addEventListener("keydown",function(e){
@@ -279,12 +297,9 @@ input.addEventListener("keydown",function(e){
 
 if(e.key==="Enter" && !e.shiftKey){
 
-
 e.preventDefault();
 
-
 sendMessage();
-
 
 }
 
